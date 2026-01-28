@@ -1,16 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Domain\Users;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Domain\Users\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
-{
+class UserFactory extends Factory {
+
+    protected $model = User::class;
     /**
      * The current password being used by the factory.
      */
@@ -29,7 +31,27 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => 'client', // por defecto todos son clientes
         ];
+    }
+
+    // Estados para roles específicos
+    public function admin(): static {
+        return $this->state(fn(array $attributes) => [
+            'role' => 'admin',
+        ]);
+    }
+
+    public function staff(): static {
+        return $this->state(fn(array $attributes) => [
+            'role' => 'staff',
+        ]);
+    }
+
+    public function client(): static {
+        return $this->state(fn(array $attributes) => [
+            'role' => 'client',
+        ]);
     }
 
     /**
