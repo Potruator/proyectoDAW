@@ -1,0 +1,20 @@
+import './bootstrap';
+import '../css/app.css';
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { createInertiaApp } from '@inertiajs/react';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+
+createInertiaApp({
+    title: (title) => `${title} - Mi Bar`,
+    resolve: async (name) => {
+        const pages = import.meta.glob('./Pages/**/*.jsx');
+        const page = await pages[`./Pages/${name}.jsx`]();
+        return page.default;
+    },
+    setup({ el, App, props }) {
+        const root = createRoot(el);
+        root.render(<App {...props} />);
+    },
+});

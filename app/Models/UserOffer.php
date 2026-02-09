@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domain\Users\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-use App\Domain\Users\Models\User;
-use App\Domain\Offers\Models\Offer;
+use App\Models\User;
+use App\Models\Offer;
 
 class UserOffer extends Model {
     use HasFactory;

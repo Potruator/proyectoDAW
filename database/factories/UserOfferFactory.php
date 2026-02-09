@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Factories\Domain\Users;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Domain\Users\Models\UserOffer;
-use App\Domain\Users\Models\User;
-use App\Domain\Offers\Models\Offer;
+use App\Models\UserOffer;
+use App\Models\User;
+use App\Models\Offer;
 use Illuminate\Support\Str;
 
 class UserOfferFactory extends Factory {

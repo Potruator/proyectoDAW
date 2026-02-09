@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 
-use App\Domain\Offers\Models\Offer;
-use App\Domain\Events\Models\Event;
+use App\Http\Controllers\Controller;
+
+use App\Models\Offer;
+use App\Models\Event;
 use Inertia\Inertia;
 
 class PublicController extends Controller

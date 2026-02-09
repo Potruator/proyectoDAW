@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Events\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +12,7 @@ class Event extends Model {
         'title',
         'description',
         'date',
+        'image_path', // ¿?¿?
         'location',
         'is_public',
     ];

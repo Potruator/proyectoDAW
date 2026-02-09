@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Offers\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Domain\Users\Models\UserOffer;
+use App\Models\UserOffer;
 
 class Offer extends Model {
 
@@ -13,17 +13,19 @@ class Offer extends Model {
     protected $fillable = [
         'title',
         'description',
-        'starts_at',
-        'ends_at',
-        'is_public',
+        // 'discount_code',
         'discount_percentage',
+        'starts_at',
+        'expires_at',
+        'is_public',
+        'is_featured'
     ];
 
     // Scope para ofertas activas
     public function scopeActive($query) {
         return $query
             ->where('starts_at', '<=', now())
-            ->where('ends_at', '>=', now())
+            ->where('expires_at', '>=', now())
             ->where('is_public', true);
     }
 
@@ -31,7 +33,7 @@ class Offer extends Model {
         return $query
             ->where('is_featured', true)
             ->where('starts_at', '<=', now())
-            ->where('ends_at', '>=', now());
+            ->where('expires_at', '>=', now());
     }
 
     // Relaciones

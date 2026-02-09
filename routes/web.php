@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\OfferController;
-use App\Http\Controllers\RedemptionController;
+use App\Http\Controllers\Web\PublicController;
+use App\Http\Controllers\Web\OfferController;
+use App\Http\Controllers\Web\RedemptionController;
+
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOfferController;
 use App\Http\Controllers\Admin\AdminEventController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 
 Route::get('/', PublicController::class)->name('home');
 
+/* 
 Route::get('/eventos', [PublicController::class, 'events'])
     ->name('events.index');
 
@@ -54,4 +56,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('/usuarios', AdminUserController::class);
         });
     });
-});
+}); */
