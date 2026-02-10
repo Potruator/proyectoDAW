@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -31,26 +32,26 @@ class UserFactory extends Factory {
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => 'client', // por defecto todos son clientes
+            'role' => UserRole::CLIENT, // por defecto todos son clientes
         ];
     }
 
     // Estados para roles específicos
     public function admin(): static {
         return $this->state(fn(array $attributes) => [
-            'role' => 'admin',
+            'role' => UserRole::ADMIN,
         ]);
     }
 
     public function staff(): static {
         return $this->state(fn(array $attributes) => [
-            'role' => 'staff',
+            'role' => UserRole::STAFF,
         ]);
     }
 
     public function client(): static {
         return $this->state(fn(array $attributes) => [
-            'role' => 'client',
+            'role' => UserRole::CLIENT,
         ]);
     }
 

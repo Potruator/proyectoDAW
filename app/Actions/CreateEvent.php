@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Events\Actions;
+namespace App\Actions;
 
 use App\Models\Event;
 

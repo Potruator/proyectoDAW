@@ -25,7 +25,8 @@ class Offer extends Model {
     public function scopeActive($query) {
         return $query
             ->where('starts_at', '<=', now())
-            ->where('expires_at', '>=', now())
+            ->whereNull('expires_at')
+            ->orWhere('expires_at', '>=', now())
             ->where('is_public', true);
     }
 

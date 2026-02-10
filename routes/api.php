@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controller\Api\OfferController as ApiOfferController;
+use App\Http\Controllers\Api\OfferController as ApiOfferController;
 use App\Http\Controllers\Api\RedemptionController as ApiRedemptionController;
 
 Route::post('/login', [AuthController::class, 'login']);
