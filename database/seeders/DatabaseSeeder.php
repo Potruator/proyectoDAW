@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             OfferSeeder::class,
-            EventSeeder::class
+            EventSeeder::class,
+            UserOfferSeeder::class
         ]);
 
         $this->command->info('✅ Base de datos creada correctamente');
