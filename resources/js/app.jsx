@@ -9,8 +9,8 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 createInertiaApp({
     title: (title) => `${title} - Mi Bar`,
     resolve: async (name) => {
-        const pages = import.meta.glob('./Pages/**/*.jsx');
-        const page = await pages[`./Pages/${name}.jsx`]();
+        const pages = import.meta.glob('./pages/**/*.jsx');
+        const page = await pages[`./pages/${name}.jsx`]();
         return page.default;
     },
     setup({ el, App, props }) {

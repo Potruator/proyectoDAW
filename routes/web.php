@@ -13,14 +13,14 @@ use App\Http\Controllers\Admin\AdminUserController;
 
 Route::get('/', PublicController::class)->name('home');
 
-/* 
+// Rutas públicas
 Route::get('/eventos', [PublicController::class, 'events'])
     ->name('events.index');
 
 Route::get('/ofertas', [PublicController::class, 'offers'])
     ->name('offers.public');
 
-
+/*
 Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::prefix('app')->group(function () {

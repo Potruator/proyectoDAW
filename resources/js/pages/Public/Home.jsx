@@ -1,10 +1,11 @@
+import { Head } from '@inertiajs/react';
 import React from 'react';
 
-// Fíjate en el "export default" al principio de la función
 export default function Home({ featuredOffers }) {
-    console.log(featuredOffers); // Esto sí es un log útil
+    console.log(featuredOffers); 
     return (
         <div>
+            <Head title="Welcome"/>
             <h1>Ofertas del Bar</h1>
             <ul>
                 {featuredOffers.map(offer => (
