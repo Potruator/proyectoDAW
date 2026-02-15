@@ -11,7 +11,8 @@ export default defineConfig({
         }),
         react({
             include: /\.(j|t)sx?$/,
-        })
+        }),
+        tailwindcss(),
     ],
     server: {
         host: '127.0.0.1',
