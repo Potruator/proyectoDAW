@@ -2,7 +2,6 @@ import { Head } from '@inertiajs/react';
 import React from 'react';
 
 export default function Home({ featuredOffers }) {
-    console.log(featuredOffers); 
     return (
         <div>
             <Head title="Welcome"/>

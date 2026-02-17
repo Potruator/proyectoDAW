@@ -22,6 +22,11 @@ class PublicController extends Controller
         ]);
     }
 
+    // Login page
+    public function login(): Response {
+        return Inertia::render('Auth/Login');
+    }
+
     // Listado de eventos públicos
     public function events(): Response {
         return Inertia::render('Public/Events', [

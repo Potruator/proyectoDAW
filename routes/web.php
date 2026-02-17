@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/', PublicController::class)->name('home');
 
 // Rutas públicas
+Route::get('/login', [PublicController::class, 'login'])
+    ->name('login');
+
 Route::get('/eventos', [PublicController::class, 'events'])
     ->name('events.index');
 

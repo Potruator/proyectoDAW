@@ -21,6 +21,7 @@ export default function Layout({ children }) {
                                 <Link href='/' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Inicio</Link>
                                 <Link href='/about' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>About</Link>
                                 <Link href='/contact' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Contact</Link>
+                                <Link href='/login' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Login</Link>
                             </div>
 
                             {/* Nav mobile */}
@@ -45,6 +46,7 @@ export default function Layout({ children }) {
                             <Link href='/' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>Inicio</Link>
                             <Link href='/about' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>About</Link>
                             <Link href='/contact' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>Contacto</Link>
+                            <Link href='/login' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>Login</Link>
                         </div>
                     </div>
                 </nav>
