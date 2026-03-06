@@ -5,23 +5,59 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\PublicController;
 use App\Http\Controllers\Web\OfferController;
 use App\Http\Controllers\Web\RedemptionController;
+use App\Http\Controllers\Web\AuthController;
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOfferController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminUserController;
 
-Route::get('/', PublicController::class)->name('home');
-
 // Rutas públicas
-Route::get('/login', [PublicController::class, 'login'])
-    ->name('login');
+Route::get('/', PublicController::class)->name('home');
+Route::get('/eventos', [PublicController::class, 'events'])->name('events.index');
+Route::get('/ofertas', [PublicController::class, 'offers'])->name('offers.public');
 
-Route::get('/eventos', [PublicController::class, 'events'])
-    ->name('events.index');
+/**
+ * AUTENTICACIÓN
+ */
+Route::middleware(['guest'])->group(function () {
+    // Formulario login
+    Route::get('/login', [PublicController::class, 'login'])->name('login');
 
-Route::get('/ofertas', [PublicController::class, 'offers'])
-    ->name('offers.public');
+    // Procesado login
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
+});
+
+// LOGOUT
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware(['auth'])
+    ->name('logout');
+
+
+/**
+ * RUTAS PROTEGIDAS
+ */
+/*
+Route::middleware(['auth'])->prefix('app')->group(function() {
+
+    // Cliente
+    Route::middleware(['role:client'])->group(function() {
+        Route::get('/ofertas', [OfferController::class, 'index'])->name('client.offers.index');
+    });
+
+    // Staff
+    Route::middleware(['role:staff'])->group(function () {
+        Route::get('/canjear', [RedemptionController::class, 'scan'])->name('staff.scan');
+    });
+
+    // Admin
+    Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    });
+});*/
+
+
+
 
 /*
 Route::middleware(['auth', 'verified'])->group(function () {
