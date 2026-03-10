@@ -30,7 +30,7 @@ export default function Layout({ children }) {
     }, [flash]);
 
     return (
-        <div className='min-h-screen bg-gray-950'>
+        <div className='min-h-screen bg-gray-950 flex flex-col'>
             <header className='sticky top-0 z-50 shadow-2xl'>
                 <nav className='bg-gray-900 border-b border-gray-800'>
                     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -182,10 +182,10 @@ export default function Layout({ children }) {
                 </div>
             )}
 
-            <main>{children}</main>
+            <main className='grow'>{children}</main>
 
             <footer className='bg-gray-900 border-t border-gray-800 mt-auto'>
-                <div className='max-w-7xl mx-auto px-4 py-6 text-center text-gray-400'>
+                <div className='mx-auto py-4 text-center text-gray-400'>
                     <p>&copy; 2026 Golden Café. Todos los derechos reservados.</p>
                 </div>
             </footer>
