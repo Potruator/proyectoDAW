@@ -25,21 +25,31 @@ class AuthController extends Controller
             $user = Auth::user();
 
             if ($user->isAdmin()) {
-                return redirect()->intended('/app/admin');
+                return redirect()
+                    ->intended('/')
+                    ->with('success', 'Bienvenido, ' . $user->name);
             }
 
             if ($user->isStaff()) {
-                return redirect()->intended('/app/canjear');
+                return redirect()
+                    ->intended('/')
+                    ->with('success', 'Bienvenido, ' . $user->name);
             }
 
             // Cliente por defecto
-            return redirect()->intended('/app/ofertas');
+            return redirect()
+                ->intended('/')
+                ->with('success', 'Bienvenido, ' . $user->name);
         }
 
         // Login fallido
+        return back()->with('error', 'Credenciales incorrectas');
+
+        /*
+        // Login fallido
         throw ValidationException::withMessages([
             'email' => 'Credenciales incorrectas'
-        ]);
+        ]);*/
     }
 
     public function logout(Request $request) {
@@ -48,6 +58,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')
+            ->with('success', 'Sesión cerrada correctamente');
     }
 }

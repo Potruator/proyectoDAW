@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/react"
+import { useForm, Head } from "@inertiajs/react"
 
 export default function Login() {
     const { data, setData, post, processing, errors } = useForm({
@@ -13,6 +13,7 @@ export default function Login() {
 
     return (
         <div className="max-w-md mx-auto">
+            <Head title="Login"/>
             <div className="bg-gray-900 p-8 rounded-lg shadow-2xl">
                 <h1 className="text-3xl font-bold text-amber-400 mb-6">Inicia sesión</h1>
                 
@@ -55,7 +56,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={processing}
-                        className="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
+                        className="cursor-pointer w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
                     >
                         {processing ? "Iniciando..." : "Iniciar sesión"}
                     </button>
