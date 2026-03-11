@@ -50,8 +50,10 @@ export default function Layout({ children }) {
                                 {/* Usuario autenticado en desktop*/}
                                 {auth.user ? (
                                     <div className='flex items-center space-x-4 border-l border-gray-800 pl-4'>
-                                        <span className='text-gray-300'>
-                                            <span className='text-amber-400 font-semibold'>Hola, {auth.user.name}</span>
+                                        <span className='text-amber-400 font-semibold'>
+                                            <Link href={`/app/${auth.user.role}`} method='get'>
+                                                Hola, {auth.user.name}
+                                            </Link>
                                         </span>
                                         <Link href='/logout' method='post' as='button' className='text-red-400 cursor-pointer hover:text-red-500 transition-colors font-medium'>Cerrar sesión</Link>
                                     </div>
@@ -86,8 +88,10 @@ export default function Layout({ children }) {
                             {/* Usuario autenticado en mobile */}
                             {auth.user ? (
                                 <>
-                                    <div className='px-3 py-3 text-gray-400 text-sm border-t border-gray-800'>
-                                        {auth.user.name}
+                                    <div className='px-3 py-3 text-amber-400 text-sm border-t border-gray-800'>
+                                        <Link href={`/app/${auth.user.role}`} method='get'>
+                                            {auth.user.name}
+                                        </Link>
                                     </div>
                                     <Link href='/logout' method='post' as='button' 
                                         className='block w-full text-left px-3 py-3 text-red-400 hover:bg-red-400 hover:text-gray-900 rounded-md transition-colors'>
