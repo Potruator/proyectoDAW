@@ -12,7 +12,7 @@ export default function Login() {
     };
 
     return (
-        <div className="max-w-md mx-auto">
+        <div className="mt-20 max-w-md mx-auto">
             <Head title="Login"/>
             <div className="bg-gray-900 p-8 rounded-lg shadow-2xl">
                 <h1 className="text-3xl font-bold text-amber-400 mb-6">Inicia sesión</h1>
@@ -35,7 +35,7 @@ export default function Login() {
                         )}
                     </div>
 
-                    {/* Submit */}
+                    {/* Password */}
                     <div>
                         <label className="block text-gray-300 mb-2">Contraseña</label>
                         <input
