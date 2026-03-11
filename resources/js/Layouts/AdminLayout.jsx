@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function AdminLayout({ children }) {
-    const { auth } = usePate().props;
+    const { auth } = usePage().props;
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
     return (

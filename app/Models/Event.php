@@ -17,6 +17,11 @@ class Event extends Model {
         'is_public',
     ];
 
+    protected $casts = [
+        'date' => 'date',
+        'is_public' => 'boolean'
+    ];
+
     // Scope para eventos futuros
     public function scopeUpcoming($query) {
         return $query

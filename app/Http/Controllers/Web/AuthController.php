@@ -26,7 +26,7 @@ class AuthController extends Controller
 
             if ($user->isAdmin()) {
                 return redirect()
-                    ->intended('/')
+                    ->intended('/app/admin')
                     ->with('success', 'Bienvenido, ' . $user->name);
             }
 

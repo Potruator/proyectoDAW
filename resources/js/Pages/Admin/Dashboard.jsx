@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { usePage } from '@inertiajs/react';
+import { usePage, Head } from '@inertiajs/react';
 
 export default function Dashboard({
     stats,
@@ -11,6 +11,7 @@ export default function Dashboard({
 }) {
     return (
         <AdminLayout>
+            <Head title='Dashboard'/>
             {/* Estadísticas */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
                 {/* Total Usuarios */}
@@ -67,7 +68,7 @@ export default function Dashboard({
                     </div>
                 </div>
 
-                {/* Canjes */}
+                {/* Canjeos */}
                 <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
                     <div className='flex items-center justify-between'>
                         <div>
@@ -85,6 +86,101 @@ export default function Dashboard({
                     </div>
                 </div>
             </div>
+
+            {/* Gráfico y top ofertas */}
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8'>
+                {/* Gráfico de canjeos por mes */}
+                <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
+                    <h3 className='text-lg font-semibold text-white mb-4'>Canjeos por mes</h3>
+                    <div className='h-64 flex items-end justify-between space-x-2'>
+                        {redemptionsByMonth.map((item,index) => (
+                            <div key={index} className='flex-1 flex flex-col items-center'>
+                                <div
+                                    className='w-full bg-amber-500 rounded-t hover:bg-amber-400 transition-colors cursor-pointer'
+                                    style={{ height: `${(item.count / Math.max(...redemptionsByMonth.map(i => i.count))) * 100}%`}}
+                                    title={`${item.count} canjeos`}
+                                />
+                                <p className='text-xs text-gray-400 mt-2'>{item.month}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Top ofertas */}
+                <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
+                    <h3 className='text-lg font-semibold text-white mb-4'>Ofertas más canjeadas</h3>
+                    <div className='space-y-3'>
+                        {topOffers.map((offer) => (
+                            <div key={offer.id} className='flex items-center justify-between'>
+                                <div className='flex-1'>
+                                    <p className='text-white text-sm font-medium'>{offer.title}</p>
+                                    <p className='text-gray-400 text-xs'>{offer.discount_percentage}% descuento</p>
+                                </div>
+                                <div className='flex items-center space-x-2'>
+                                    <span className='text-amber-400 font-bold'>{offer.redemptions_count}</span>
+                                    <span className='text-gray-500 text-xs'>canjes</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Tablas */}
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                {/* Últimos canjeos */}
+                <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
+                    <h3 className='text-lg font-semibold text-white mb-4'>Últimos canjeos</h3>
+                    <div className='space-y-3'>
+                        {recentRedemptions.map((redemption) => (
+                            <div key={redemption.id} className='flex items-start justify-between border-b border-gray-800 pb-3'>
+                                <div>
+                                    <p className='text-white text-sm font-medium'>{redemption.offer_title}</p>
+                                    <p className='text-gray-400 text-xs'>Cliente: {redemption.client_name}</p>
+                                    <p className='text-gray-500 text-xs'>Staff: {redemption.staff_name}</p>
+                                </div>
+                                <span className='text-xs text-gray-400'>{redemption.redeemed_at}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Últimos usuarios */}
+                <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
+                    <h3 className='text-lg font-semibold text-white mb-4'>Últimos usuarios</h3>
+                    <div className='space-y-3'>
+                        {recentUsers.map((user) => (
+                            <div key={user.id} className='flex items-start justify-between border-b border-gray-800 pb-3'>
+                                <div>
+                                    <p className='text-white text-sm font-medium'>{user.name}</p>
+                                    <p className='text-gray-400 text-xs'>{user.email}</p>
+                                    <span className='inline-block mt-1 px-2 py-1 bg-blue-500/10 text-blue-400 text-xs rounded'>{user.role}</span>
+                                </div>
+                                <span className='text-xs text-gray-400'>{user.created_at}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Próximos eventos */}
+            {upcomingEvents.length > 0 && (
+                <div className='mt-6 bg-gray-900 rounded-lg p-6 border border-gray-800'>
+                    <h3 className='text-lg font-semibold text-white mb-4'>Próximos eventos</h3>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                        {upcomingEvents.map((event) => (
+                            <div key={event.id} className='bg-gray-800 rounded-lg p-4 border border-gray-700'>
+                                <h4 className='text-white font-semibold mb-2'>{event.title}</h4>
+                                <div className='space-y-1 text-sm'>
+                                    <p className='text-gray-400'>📅 {event.date}</p>
+                                    <p className='text-gray-400'>🕑 {event.time}</p>
+                                    <p className='text-gray-400'>📍 {event.location}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </AdminLayout>
-    )
+    );
 }

@@ -37,7 +37,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 /**
  * RUTAS PROTEGIDAS
  */
-/*
+
 Route::middleware(['auth'])->prefix('app')->group(function() {
 
     // Cliente
@@ -52,9 +52,9 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
 
     // Admin
     Route::middleware(['role:admin'])->prefix('admin')->group(function () {
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
     });
-});*/
+});
 
 
 
