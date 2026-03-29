@@ -53,6 +53,9 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
     // Admin
     Route::middleware(['role:admin'])->prefix('admin')->group(function () {
         Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
+
+        // CRUD de Ofertas
+        Route::resource('ofertas', AdminOfferController::class);
     });
 });
 
