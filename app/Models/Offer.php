@@ -21,6 +21,13 @@ class Offer extends Model {
         'is_featured'
     ];
 
+    protected $casts = [
+        'starts_at' => 'date',
+        'expires_at' => 'date',
+        'is_featured' => 'boolean',
+        'is_public' => 'boolean'
+    ];
+
     // Scope para ofertas activas
     public function scopeActive($query) {
         return $query
