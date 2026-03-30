@@ -56,6 +56,9 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
 
         // CRUD de Ofertas
         Route::resource('offers', AdminOfferController::class);
+
+        // CRUD de Usuarios
+        Route::resource('users', AdminUserController::class);
     });
 });
 
