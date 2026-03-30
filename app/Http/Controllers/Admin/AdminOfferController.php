@@ -63,7 +63,7 @@ class AdminOfferController extends Controller
         Offer::create($validated);
 
         return redirect()
-            ->route('ofertas.index')
+            ->route('offers.index')
             ->with('success', 'Oferta creada exitosamente');
     }
 
@@ -126,7 +126,7 @@ class AdminOfferController extends Controller
         $offer->update($validated);
 
         return redirect()
-            ->route('ofertas.index')
+            ->route('offers.index')
             ->with('success', 'Oferta actualizada correctamente');
     }
 
@@ -138,7 +138,7 @@ class AdminOfferController extends Controller
         $offer->delete();
 
         return redirect()
-            ->route('ofertas.index')
+            ->route('offers.index')
             ->with('success', 'Oferta eliminada correctamente');
     }
 }

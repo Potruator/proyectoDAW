@@ -23,7 +23,7 @@ export default function AdminLayout({ children }) {
                     )}
                     <button 
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className='text-gray-400 hover:text-white'
+                        className='text-gray-400 hover:text-white hover:cursor-pointer'
                     >
                         <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16'/>
@@ -50,9 +50,9 @@ export default function AdminLayout({ children }) {
 
                     {/* Ofertas */}
                     <Link
-                        href='/app/admin/ofertas'
+                        href='/app/admin/offers'
                         className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                            currentUrl.startsWith('/app/admin/ofertas')
+                            currentUrl.startsWith('/app/admin/offers')
                                 ? 'bg-amber-500 text-gray-900'
                                 : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                         }`}
@@ -65,9 +65,9 @@ export default function AdminLayout({ children }) {
 
                     {/* Eventos */}
                     <Link
-                        href='/app/admin/eventos'
+                        href='/app/admin/events'
                          className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                            currentUrl.startsWith('/app/admin/eventos')
+                            currentUrl.startsWith('/app/admin/events')
                                 ? 'bg-amber-500 text-gray-900'
                                 : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                         }`}
@@ -80,9 +80,9 @@ export default function AdminLayout({ children }) {
 
                     {/* Usuarios */}
                     <Link 
-                        href='/app/admin/usuarios'
+                        href='/app/admin/users'
                         className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                            currentUrl.startsWith('/app/admin/usuarios')
+                            currentUrl.startsWith('/app/admin/users')
                                 ? 'bg-amber-500 text-gray-900'
                                 : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                         }`}                    >
@@ -110,7 +110,7 @@ export default function AdminLayout({ children }) {
                         href='/logout'
                         method='post'
                         as='button'
-                        className='mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm transition-colors'
+                        className='mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 hover:cursor-pointer rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm transition-colors'
                     >
                         <svg className='w-4 h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1' />

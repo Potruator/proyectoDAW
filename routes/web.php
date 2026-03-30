@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 // Rutas públicas
 Route::get('/', PublicController::class)->name('home');
 Route::get('/eventos', [PublicController::class, 'events'])->name('events.index');
-Route::get('/ofertas', [PublicController::class, 'offers'])->name('offers.public');
+Route::get('/offers', [PublicController::class, 'offers'])->name('offers.public');
 
 /**
  * AUTENTICACIÓN
@@ -42,12 +42,12 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
 
     // Cliente
     Route::middleware(['role:client'])->group(function() {
-        Route::get('/ofertas', [OfferController::class, 'index'])->name('client.offers.index');
+        Route::get('/offers', [OfferController::class, 'index'])->name('client.offers.index');
     });
 
     // Staff
     Route::middleware(['role:staff'])->group(function () {
-        Route::get('/canjear', [RedemptionController::class, 'scan'])->name('staff.scan');
+        Route::get('/redeem', [RedemptionController::class, 'scan'])->name('staff.scan');
     });
 
     // Admin
@@ -55,7 +55,7 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
         Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
 
         // CRUD de Ofertas
-        Route::resource('ofertas', AdminOfferController::class);
+        Route::resource('offers', AdminOfferController::class);
     });
 });
 
