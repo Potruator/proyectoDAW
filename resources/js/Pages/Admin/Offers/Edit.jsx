@@ -4,7 +4,9 @@ import { router } from '@inertiajs/react';
 
 export default function Edit({ offer }) {
     const handleSubmit = (data) => {
-        router.put(route('ofertas.update', offer.id), data);
+        router.put(`/app/admin/offers/${offer.id}`, data, {
+            preserveScroll: true,
+        });
     };
 
     return (

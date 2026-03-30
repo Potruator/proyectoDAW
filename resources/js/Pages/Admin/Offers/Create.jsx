@@ -4,7 +4,7 @@ import { router } from '@inertiajs/react';
 
 export default function Create() {
     const handleSubmit = (data) => {
-        router.post(route('ofertas.store'), data);
+        router.post('/app/admin/offers', data);
     };
 
     return (

@@ -4,7 +4,7 @@ import { Link, router } from '@inertiajs/react';
 export default function Index({ offers }) {
     const handleDelete = (id) => {
         if (confirm('¿Estás seguro de eliminar esta oferta?')) {
-            router.delete(route('ofertas.destroy', id));
+            router.delete(`/app/admin/offers/${id}`);
         }
     };
 
@@ -13,7 +13,7 @@ export default function Index({ offers }) {
             <div className='flex justify-between items-center mb-6'>
                 <h1 className='text-3xl font-bold text-white'>Gestión de Ofertas</h1>
                 <Link 
-                    href={route('ofertas.create')}
+                    href='/app/admin/offers/create'
                     className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                 >
                     + Nueva Oferta
@@ -90,20 +90,20 @@ export default function Index({ offers }) {
                                 </td>
                                 <td className='px-6 py-4 text-right space-x-2'>
                                     <Link  
-                                        href={route('ofertas.show', offer.id)}
+                                        href={`/app/admin/offers/${offer.id}`}
                                         className='inline-block px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded transition-colors'
                                     >
                                         Ver
                                     </Link>
                                     <Link  
-                                        href={route('ofertas.edit', offer.id)}
+                                        href={`/app/admin/offers/${offer.id}/edit`}
                                         className='inline-block px-3 py-2 bg-amber-500 hover:bg-amber-600 text-gray-900 text-sm rounded transition-colors'
                                     >
                                         Editar
                                     </Link>
                                     <button
                                         onClick={() => handleDelete(offer.id)}
-                                        className='px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-sm rounded transition-colors'
+                                        className='px-3 py-2 bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white text-sm rounded transition-colors'
                                     >
                                         Eliminar
                                     </button>

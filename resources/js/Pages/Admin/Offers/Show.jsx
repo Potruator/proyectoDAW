@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 export default function Show({ offer }) {
     return (
@@ -8,7 +8,7 @@ export default function Show({ offer }) {
                 <div className='flex justify-between items-center mb-6'>
                     <h1 className='text-3xl font-bold text-white'>Detalle de Oferta</h1>
                     <Link
-                        href={router('ofertas.edit', offer.id)}
+                        href={`/app/admin/offers/${offer.id}/edit`}
                         className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                     >
                         Editar Oferta
@@ -53,7 +53,7 @@ export default function Show({ offer }) {
                                 ⭐ Destacada
                             </span>
                         )}
-                        {offer.ispublic && (
+                        {offer.is_public && (
                             <span className='px-4 py-2 bg-blue-500/10 text-blue-400 rounded-lg'>
                                 🌐 Pública
                             </span>
