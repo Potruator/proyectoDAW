@@ -9,7 +9,7 @@ export default function AdminLayout({ children }) {
     const currentUrl = usePage().url;
 
     return (
-        <div className='min-h-screen bg-gray-950 flex'>
+        <div className='min-h-screen bg-gray-950 flex overflow-hidden'>
             {/* Sidebar */}
             <aside className={`
                 ${sidebarOpen ? 'w-64' : 'w-20'}
@@ -121,7 +121,7 @@ export default function AdminLayout({ children }) {
             </aside>
 
             {/* Contenido principal */}
-            <div className='flex-1 flex flex-col'>
+            <div className='flex-1 flex flex-col min-w-0'>
                 {/* Barra superior */}
                 <header className='bg-gray-900 border-b border-gray-800 px-6 py-4'>
                     <div className='flex items-center justify-between'>
