@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AdminUserController extends Controller
 {
@@ -13,7 +14,19 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::latest()
+            ->paginate(10)
+            ->through(fn ($user) => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'created_at' => $user->created_at->format('d/m/Y'),
+                'role' => $user->role->label()
+            ]);
+
+        return Inertia::render('Admin/Users/Index', [
+            'users' => $users
+        ]);
     }
 
     /**
