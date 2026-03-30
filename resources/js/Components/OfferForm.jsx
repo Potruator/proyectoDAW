@@ -58,7 +58,7 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
             {/* Descuento */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Porcentaje de Descuento * (1-100)
+                    Porcentaje de Descuento * (1-100) %
                 </label>
                 <div className='relative'>
                     <input
@@ -71,7 +71,6 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
                         placeholder='50'
                         required
                     />
-                    <span className='absolute right-4 top-3 text-gray-400 text-lg'>%</span>
                 </div>
                 {errors.discount_percentage && (
                     <p className='text-red-500 text-sm mt-1'>{errors.discount_percentage}</p>
@@ -121,7 +120,7 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
                     <input
                         type='checkbox'
                         checked={data.is_featured}
-                        onChange={e => setData('is_featured, e.target.checked')}
+                        onChange={e => setData('is_featured', e.target.checked)}
                         className='w-5 h-5 bg-gray-800 border-gray-700 rounded text-amber-500 focus:ring-amber-500'
                     />
                     <span className='text-gray-300'>Marcar como destacada</span>
@@ -144,16 +143,17 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
                 <button
                     type='submit'
                     disabled={processing}
-                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors disabled:opacity-50'
+                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 hover:cursor-pointer font-semibold rounded-lg transition-colors disabled:opacity-50'
                 >
                     {processing ? 'Guardando...' : submitText}
                 </button>
                 <a
-                    href={router('ofertas.index')}
+                    href='/app/admin/offers'
                     className='px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors'
                 >
                     Cancelar
                 </a>
+                <span className='ml-auto my-auto text-lg text-gray-400'>(* requerido)</span>
             </div>
         </form>
     );

@@ -15,12 +15,12 @@ class UserOfferSeeder extends Seeder {
     public function run(): void {
         // Verificar que existan usuarios y ofertas
         if (User::count() === 0) {
-            $this->command->warn('⚠️  No hay usuarios. Ejecuta UserSeeder primero.');
+            $this->command->warn('⚠️ No hay usuarios. Ejecuta UserSeeder primero.');
             return;
         }
 
         if (Offer::count() === 0) {
-            $this->command->warn('⚠️  No hay ofertas. Ejecuta OfferSeeder primero.');
+            $this->command->warn('⚠️ No hay ofertas. Ejecuta OfferSeeder primero.');
             return;
         }
 
@@ -31,12 +31,12 @@ class UserOfferSeeder extends Seeder {
         $activeOffers = Offer::active()->get();
 
         if ($clients->isEmpty()) {
-            $this->command->warn('⚠️  No hay clientes disponibles.');
+            $this->command->warn('⚠️ No hay clientes disponibles.');
             return;
         }
 
         if ($activeOffers->isEmpty()) {
-            $this->command->warn('⚠️  No hay ofertas activas.');
+            $this->command->warn('⚠️ No hay ofertas activas.');
             $activeOffers = Offer::all(); // Usar todas si no hay activas
         }
 
@@ -127,9 +127,9 @@ class UserOfferSeeder extends Seeder {
         $valid = UserOffer::valid()->count();
 
         $this->command->info('✅ Asignación de ofertas completada!');
-        $this->command->info("   📊 Total: {$total} asignaciones");
-        $this->command->info("   ⏳ Pendientes: {$pending}");
-        $this->command->info("   ✓ Canjeadas: {$redeemed}");
-        $this->command->info("   ✅ Válidas: {$valid}");
+        $this->command->info("📊 Total: {$total} asignaciones");
+        $this->command->info("⏳ Pendientes: {$pending}");
+        $this->command->info("✓ Canjeadas: {$redeemed}");
+        $this->command->info("✅ Válidas: {$valid}");
     }
 }
