@@ -59,6 +59,9 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
 
         // CRUD de Usuarios
         Route::resource('users', AdminUserController::class);
+
+        // CRUD de Eventos
+        Route::resource('events', AdminEventController::class);
     });
 });
 
