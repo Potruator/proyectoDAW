@@ -1,6 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Link, router } from '@inertiajs/react';
+import { Link, router, Head } from '@inertiajs/react';
 import { useState } from 'react';
+import styles from './Index.module.css';
 
 export default function Index({ users, filters }) {
     const [searchValues, setSearchValues] = useState({
@@ -37,10 +38,11 @@ export default function Index({ users, filters }) {
 
     return (
         <AdminLayout>
+            <Head title='Índice de Usuarios'/>
             <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4'>
                 <h1 className='text-3xl font-bold text-white'>Gestión de Usuarios</h1>
                 <Link 
-                    href='/app/admin/usuario/create'
+                    href='/app/admin/users/create'
                     className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                 >
                     + Nuevo Usuario
@@ -50,7 +52,7 @@ export default function Index({ users, filters }) {
             {/* Barra de búsqueda y filtros */}
             <div className='bg-gray-900 p-4 rounded-lg mb-6 border border-gray-800'>
                 <form onSubmit={handleSearch} className='flex flex-col md:flex-row gap-4 w-full'>
-                    <div className='flex-1 w-full'>
+                    <div className='flex-1 w-full h-full'>
                         <input
                             type='text'
                             name='search'
@@ -66,7 +68,7 @@ export default function Index({ users, filters }) {
                             name='role'
                             value={searchValues.role}
                             onChange={handleChange}
-                            className='w-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 hover:cursor-pointer rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
+                            className='w-full h-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 hover:cursor-pointer rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
                         >
                             <option value=''>Todos los roles</option>
                             <option value='admin'>Administrador</option>
@@ -95,49 +97,49 @@ export default function Index({ users, filters }) {
                 </form>
             </div>
 
-            {/* Tabla de Ofertas */}
+            {/* Tabla de Usuarios */}
             <div className='bg-gray-900 rounded-lg overflow-x-auto w-full border border-gray-800'>
                 <table className='w-full min-w-200'>
-                    <thead className='bg-gray-800'>
+                    <thead className={styles.tableHeader}>
                         <tr>
-                            <th className='px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+                            <th className={`${styles.th} text-left`}>
                                 Nombre
                             </th>
-                            <th className='px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+                            <th className={`${styles.th} text-left`}>
                                 Email
                             </th>
-                            <th className='px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+                            <th className={`${styles.th} text-center`}>
                                 Fecha de registro
                             </th>
-                            <th className='px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+                            <th className={`${styles.th} text-center`}>
                                 Rol
                             </th>
-                            <th className='px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+                            <th className={`${styles.th} text-center`}>
                                 Acciones
                             </th>
                         </tr>
                     </thead>
-                    <tbody className='divide-y divide-gray-800'>
+                    <tbody className={styles.tableBody}>
                         {users.data.map((user) => (
                             <tr key={user.id} className='hover:bg-gray-800 transition-colors'>
-                                <td className='px-6 py-4 text-white font-medium'>
+                                <td className={`${styles.td} font-medium`}>
                                     {user.name}
                                 </td>
-                                <td className='px-6 py-4 text-white font-medium'>
+                                <td className={`${styles.td} font-medium`}>
                                     {user.email}
                                 </td>
-                                <td className='px-6 py-4 text-gray-300 text-sm text-center'>
+                                <td className={`${styles.td} text-sm text-center`}>
                                     {user.created_at}
                                 </td>
-                                <td className='px-6 py-4 text-gray-300 text-sm text-center'>
-                                    <span className={`
+                                <td className={`${styles.td} text-sm text-center`}>
+                                    <span className={`px-1
                                         ${user.role === 'Administrador' ? 'bg-amber-400/10 text-amber-400' : ''}
                                         ${user.role === 'Personal' ? 'bg-green-400/10 text-green-400' : ''}
                                     `}>
                                         {user.role}
                                     </span>
                                 </td>
-                                <td className='px-6 py-4'>
+                                <td className={styles.td}>
                                     <div className='flex w-full gap-2'>
                                         <Link  
                                             href={`/app/admin/users/${user.id}`}
