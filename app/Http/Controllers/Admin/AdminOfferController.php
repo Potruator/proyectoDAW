@@ -60,11 +60,26 @@ class AdminOfferController extends Controller
             'is_public' => 'boolean'
         ]);
 
-        Offer::create($validated);
+        try {
+            Offer::create($validated);
 
-        return redirect()
-            ->route('offers.index')
-            ->with('success', 'Oferta creada exitosamente');
+            return redirect()
+                ->route('offers.index')
+                ->with('success', 'Oferta creada exitosamente');
+        }
+        catch(\Exception $e) {
+            // Registramos el error para depuración
+            \Log::error('Error al crear oferta', [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
+
+            return redirect()
+                ->back()
+                ->with('error', 'Ocurrió un error al crear la oferta. Contacte con soporte.');
+        }
+
+
     }
 
     /**
@@ -123,11 +138,23 @@ class AdminOfferController extends Controller
             'is_public' => 'boolean'
         ]);
 
-        $offer->update($validated);
+        try {
+            $offer->update($validated);
 
-        return redirect()
-            ->route('offers.index')
-            ->with('success', 'Oferta actualizada correctamente');
+            return redirect()
+                ->route('offers.index')
+                ->with('success', 'Oferta actualizada correctamente');
+        }
+        catch(\Exception $e) {
+            \Log::error('Error al actualizar oferta ID: ' . $offer->id, [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
+
+            return redirect()
+                ->back()
+                ->with('error', 'Ocurrió un error al actualizar la oferta. Contacte con soporte.');
+        }
     }
 
     /**
@@ -135,10 +162,21 @@ class AdminOfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        $offer->delete();
+        try {
+            $offer->delete();
+            return redirect()
+                ->route('offers.index')
+                ->with('success', 'Oferta eliminada correctamente');
+        }
+        catch(\Exception $e) {
+            \Log::error('Error al eliminar oferta ID: ' . $offer->id, [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
 
-        return redirect()
-            ->route('offers.index')
-            ->with('success', 'Oferta eliminada correctamente');
+            return redirect()
+                ->back()
+                ->with('error', 'Ocurrió un error al eliminar la oferta. Contacte con soporte.');
+        }
     }
 }

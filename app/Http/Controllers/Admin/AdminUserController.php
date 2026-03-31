@@ -48,7 +48,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Users/Create');
     }
 
     /**
@@ -56,7 +56,29 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'role' => 'required|in:client,staff,admin'
+        ]);
+
+        try {
+            User::create($validated);
+            return redirect()
+                ->route('users.index')
+                ->with('success', 'Usuario creado exitosamente');
+        }
+        catch(\Exception $e) {
+            // Registramos el error para depuración
+            \Log::error('Error al crear oferta', [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
+
+            return back()
+                ->with('error', 'Ocurrió un error al crear el usuario. Contacte con soporte.');
+        }
     }
 
     /**
@@ -64,7 +86,15 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return Inertia::render('Admin/Users/Show', [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'created_at' => $user->created_at->format('d/m/Y'),
+                'role' => $user->role->label()
+            ]
+        ]);
     }
 
     /**
@@ -72,7 +102,14 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return Inertia::render('Admin/Users/Edit', [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role
+            ]
+        ]);
     }
 
     /**
@@ -80,14 +117,50 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'string|min:8|nullable',
+            'role' => 'required|in:client,staff,admin'
+        ]);
+
+        try {
+            $user->update($validated);
+            return redirect()
+                ->route('users.index')
+                ->with('success', 'Usuario actualizado exitosamente');
+        }
+        catch(\Exception $e) {
+            \Log::error('Error al actualizar usuario ID: ' . $user->id, [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
+
+            return back()
+                ->with('error', 'Ocurrió un error al actualizar el usuario. Contacte con soporte.');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            return redirect()
+                ->route('users.index')
+                ->with('success', 'Usuario eliminado exitosamente');
+        }
+        catch(\Exception $e) {
+            \Log::error('Error al eliminar usuario ID: ' . $user->id, [
+                'error' => $e->getMessage(),
+                'stack' => $e->getTraceAsString()
+            ]);
+
+            return back()
+                ->with('error', 'Ocurrió un error al eliminar el usuario. Contacte con soporte.');
+        }
     }
 }
