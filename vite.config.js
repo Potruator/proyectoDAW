@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { resolve } from 'path';
 
 export default defineConfig({
     plugins: [
@@ -14,6 +15,14 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    resolve: {
+        alias: {
+            // Alias por defecto de Laravel para React
+            '@': resolve(__dirname, 'resources/js'),
+            // Alias específico para CSS
+            '@css': resolve(__dirname, 'resources/css')
+        }
+    },
     server: {
         host: '0.0.0.0',
         cors: true,
