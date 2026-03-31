@@ -1,9 +1,10 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Link, router } from '@inertiajs/react';
+import { Link, Head } from '@inertiajs/react';
 
 export default function Show({ offer }) {
     return (
         <AdminLayout>
+            <Head title='Detalle de Oferta'/>
             <div className='max-w-4xl'>
                 <div className='flex justify-between items-center mb-6'>
                     <h1 className='text-3xl font-bold text-white'>Detalle de Oferta</h1>

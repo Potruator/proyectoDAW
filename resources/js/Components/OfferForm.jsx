@@ -1,7 +1,7 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, Link } from '@inertiajs/react';
 
-export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
-    const { data, setData, processing, errors } = useForm({
+export default function OfferForm({ offer, submitUrl, submitText = 'Guardar', isEditing = false }) {
+    const { data, setData, post, processing, errors } = useForm({
         title: offer?.title || '',
         description: offer?.description || '',
         discount_percentage: offer?.discount_percentage || '',
@@ -13,7 +13,15 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(data);
+        
+        if (isEditing) {
+            put(submitUrl, {
+                preserveScroll: true
+            });
+        }
+        else {
+            post(submitUrl);
+        }
     };
 
     return (
@@ -147,12 +155,12 @@ export default function OfferForm({ offer, onSubmit, submitText = 'Guardar'}) {
                 >
                     {processing ? 'Guardando...' : submitText}
                 </button>
-                <a
+                <Link
                     href='/app/admin/offers'
                     className='px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors'
                 >
                     Cancelar
-                </a>
+                </Link>
                 <span className='ml-auto my-auto text-lg text-gray-400'>(* requerido)</span>
             </div>
         </form>

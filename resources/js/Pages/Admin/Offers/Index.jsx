@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Link, router } from '@inertiajs/react';
+import { Link, router, Head } from '@inertiajs/react';
 
 export default function Index({ offers }) {
     const handleDelete = (id) => {
@@ -10,6 +10,7 @@ export default function Index({ offers }) {
 
     return (
         <AdminLayout>
+            <Head title='Índice de Ofertas'/>
             <div className='flex justify-between items-center mb-6'>
                 <h1 className='text-3xl font-bold text-white'>Gestión de Ofertas</h1>
                 <Link 
