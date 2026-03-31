@@ -1,7 +1,7 @@
 import { useForm, Link } from '@inertiajs/react';
 
 export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEditing = false}) {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors } = useForm({
         name: user?.name || '',
         email: user?.email || '',
         password: user?.password || '',
@@ -35,7 +35,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                     className={`w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white 
                         focus:outline-none focus:border-amber-500 transition-colors`}
                     placeholder='Introduce el nombre de usuario'
-                    required
+                    required={!isEditing} // Solo requerido si es creación, no edición de usuario
                 />
                 {errors.name && (
                     <p className='text-red-500 text-sm mt-1'>{errors.name}</p>
@@ -52,10 +52,12 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                     value={data.email}
                     onChange={e => setData('email', e.target.value)}
                     className={`w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white 
-                        focus:outline-none focus:border-amber-500 transition-colors`}
+                        focus:outline-none focus:border-amber-500 transition-colors
+                        ${isEditing ? 'opacity-50 cursor-not-allowed' : ''}`} // Si estamos editando, mostramos el campo email como deshabilitado
                     placeholder='usuario@example.com'
                     autoComplete='off'
-                    required
+                    disabled={isEditing} // No permitar editar el email si estamos editando un usuario existente
+                    required={!isEditing} // El email solo es requerido si estamos creando un nuevo usuario, no al editar uno existente
                 />
                 {errors.email && (
                     <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
@@ -75,7 +77,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                         focus:outline-none focus:border-amber-500 transition-colors`}
                     placeholder='Introduce una constraseña'
                     autoComplete='off'
-                    required
+                    required={!isEditing} // La contraseña solo es requerida si estamos creando un nuevo usuario, no al editar uno existente
                 />
                 {errors.password && (
                     <p className='text-red-500 text-sm mt-1'>{errors.password}</p>
@@ -92,7 +94,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                     onChange={e => setData('role', e.target.value)}
                     className={`w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white 
                         focus:outline-none focus:border-amber-500 transition-colors`}
-                    required
+                    required={!isEditing} // Solo en creación
                 >
                     <option value='client'>Cliente</option>
                     <option value='staff'>Staff</option>

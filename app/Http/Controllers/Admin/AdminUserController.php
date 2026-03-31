@@ -118,14 +118,24 @@ class AdminUserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'string|min:8|nullable',
-            'role' => 'required|in:client,staff,admin'
+            'name' => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:8|nullable',
+            'role' => 'nullable|in:client,staff,admin'
         ]);
 
+        // Limpiamos campos vacíos para no sobrescribir nada con nulos
+        $dataToUpdate = array_filter($validated, function ($value) {
+            return $value !== null && $value !== '';
+        });
+
+        // Hasheamos la contraseña si se ha proporcionado una nueva
+        if (isset($dataToUpdate['password'])) {
+            $dataToUpdate['password'] = bcrypt($dataToUpdate['password']);
+        }
+
         try {
-            $user->update($validated);
+            $user->update($dataToUpdate);
+            
             return redirect()
                 ->route('users.index')
                 ->with('success', 'Usuario actualizado exitosamente');
