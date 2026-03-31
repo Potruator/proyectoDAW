@@ -1,0 +1,20 @@
+/* Aplicamos el alias declarado en vite.config.js.
+De este modo, importamos las clases de Tailwindcss y las personalizadas de app.css, a aplicar en este módulo css. */
+@reference '@css/app.css';
+
+
+.tableHeader {
+    @apply bg-gray-800;
+}
+
+.th {
+    @apply px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider
+}
+
+.td {
+    @apply px-6 py-4;
+}
+
+.tableBody {
+    @apply divide-y divide-gray-800;
+}
