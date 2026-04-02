@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureUserHasRole::class,
         ]);
+        $middleware->trustProxies(at: ['127.0.0.1', 'localhost']); // Confía en Nginx para manejar las cabeceras HTTPS
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
