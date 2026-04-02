@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Web\PasswordResetController;
 use App\Http\Controllers\Web\PublicController;
 use App\Http\Controllers\Web\OfferController;
 use App\Http\Controllers\Web\RedemptionController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOfferController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminUserController;
+
 
 // Rutas públicas
 Route::get('/', PublicController::class)->name('home');
@@ -26,6 +28,20 @@ Route::middleware(['guest'])->group(function () {
 
     // Procesado login
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
+
+    // -- RECUPERACIÓN DE CONTRASEÑA --
+    
+    // 1. Vista para solicitar email de recuperación
+    Route::get('/forgot-password', [PasswordResetController::class, 'create'])->name('password.request');
+
+    // 2. Recibir el email y enviar el correo con el link de recuperación
+    Route::post('/forgot-password', [PasswordResetController::class, 'store'])->name('password.email');
+
+    // 3. Vista para escribir la nueva contraseña (el usuario aquí haciendo clic en el correo)
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'edit'])->name('password.reset');
+
+    // 4. Actualizar base de datos con la nueva contraseña
+    Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
 });
 
 // LOGOUT

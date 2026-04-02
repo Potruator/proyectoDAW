@@ -56,7 +56,7 @@ export default function Login() {
                             <button
                                 type='button'
                                 onClick={() => setShowPassword(!showPassword)}
-                                className='absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-amber-400 transition-colors focus:outline-none'
+                                className='absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-amber-400 hover:cursor-pointer transition-colors focus:outline-none'
                             >
                                 {showPassword 
                                     ?   (/* Icono de ojo abierto (Ocultar contraseña) */
@@ -76,6 +76,15 @@ export default function Login() {
                                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
                             )}
                         </div>
+                        <div className="mt-2">
+                            <a 
+                                href="/forgot-password"
+                                className="text-amber-400 hover:text-amber-500 transition-colors"
+                            >
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        </div>
+     
                     </div>
 
                     {/* Submit button */}
