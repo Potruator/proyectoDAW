@@ -125,7 +125,7 @@ export default function AdminLayout({ children }) {
                 {/* Barra superior */}
                 <header className='bg-gray-900 border-b border-gray-800 px-6 py-4'>
                     <div className='flex items-center justify-between'>
-                        <h2 className='text-2xl font-bold text-white'>Dashboard</h2>
+                        <h2 className='text-xl font-bold text-white'>Dashboard</h2>
                         <div className='flex items-center space-x-4'>
                             <span className='text-gray-400 text-sm'>
                                 {new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
