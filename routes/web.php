@@ -13,10 +13,12 @@ use App\Http\Controllers\Admin\AdminOfferController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminUserController;
 
+use App\Http\Controllers\Staff\StaffDashboardController;
+
 
 // Rutas públicas
 Route::get('/', PublicController::class)->name('home');
-Route::get('/eventos', [PublicController::class, 'events'])->name('events.index');
+Route::get('/eventos', [PublicController::class, 'events'])->name('events.public');
 Route::get('/offers', [PublicController::class, 'offers'])->name('offers.public');
 
 /**
@@ -62,8 +64,13 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
     });
 
     // Staff
-    Route::middleware(['role:staff'])->group(function () {
-        Route::get('/redeem', [RedemptionController::class, 'scan'])->name('staff.scan');
+    Route::middleware(['role:staff'])->prefix('staff')->group(function () {
+        // Dashboard
+        Route::get('/', StaffDashboardController::class)->name('staff.dashboard');
+        // Escanear
+        Route::get('/scan', [RedemptionController::class, 'scan'])->name('staff.scan');
+        // Envío del código QR
+        Route::post('/scan/{uuid}', [RedemptionController::class, 'redeem'])->name('staff.redeem');
     });
 
     // Admin
