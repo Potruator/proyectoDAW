@@ -1,4 +1,4 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import { Link, router, Head } from '@inertiajs/react';
 
 export default function Index({ offers }) {
@@ -9,7 +9,7 @@ export default function Index({ offers }) {
     };
 
     return (
-        <AdminLayout>
+        <AppLayout>
             <Head title='Índice de Ofertas'/>
             <div className='flex justify-between items-center mb-6'>
                 <h1 className='text-3xl font-bold text-white'>Gestión de Ofertas</h1>
@@ -143,6 +143,6 @@ export default function Index({ offers }) {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+        </AppLayout>
     )
 }

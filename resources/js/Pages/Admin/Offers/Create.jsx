@@ -1,10 +1,10 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import OfferForm from '@/Components/OfferForm';
 import { Head } from '@inertiajs/react';
 
 export default function Create() {
     return (
-        <AdminLayout>
+        <AppLayout>
             <Head title='Crear Oferta'/>
             <div className='w-full'>
                 <h1 className='text-3xl font-bold text-white mb-6'>Crear nueva oferta</h1>
@@ -12,6 +12,6 @@ export default function Create() {
                     <OfferForm submitUrl='/app/admin/offers' submitText='Crear Oferta' isEditing={false}/>
                 </div>
             </div>
-        </AdminLayout>
+        </AppLayout>
     );
 }

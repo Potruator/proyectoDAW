@@ -1,10 +1,10 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import { Head } from '@inertiajs/react';
 import UserForm from '@/Components/UserForm';
 
 export default function Create() {
     return (
-        <AdminLayout>
+        <AppLayout>
             <Head title='Crear Usuario'/>
             <div className='w-full'>
                 <h1 className='text-3xl font-bold text-white mb-6'>Crear nuevo usuario</h1>
@@ -12,6 +12,6 @@ export default function Create() {
                     <UserForm submitUrl='/app/admin/users' submitText='Crear Usuario' isEditing={false} />
                 </div>
             </div>
-        </AdminLayout>
+        </AppLayout>
     );
 }

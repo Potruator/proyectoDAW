@@ -1,7 +1,7 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import { Link, router, Head } from '@inertiajs/react';
 import { useState } from 'react';
-import styles from './Index.module.css';
+import styles from '../Styles modules/Index.module.css';
 
 export default function Index({ users, filters }) {
     const [searchValues, setSearchValues] = useState({
@@ -37,7 +37,7 @@ export default function Index({ users, filters }) {
     };
 
     return (
-        <AdminLayout>
+        <AppLayout>
             <Head title='Índice de Usuarios'/>
             <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4'>
                 <h1 className='text-3xl font-bold text-white'>Gestión de Usuarios</h1>
@@ -193,6 +193,6 @@ export default function Index({ users, filters }) {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+        </AppLayout>
     )
 }

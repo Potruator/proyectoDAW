@@ -1,9 +1,9 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AppLayout from '@/Layouts/AppLayout';
 import { Link, Head } from '@inertiajs/react';
 
 export default function Show({ user }) {
     return (
-        <AdminLayout>
+        <AppLayout>
             <Head title='Detalle de Usuario'/>
             <div className='max-w-4xl'>
                 <div className='flex justify-between items-center mb-6'>
@@ -45,6 +45,6 @@ export default function Show({ user }) {
                     
                 </div>
             </div>
-        </AdminLayout>
+        </AppLayout>
     )
 }
