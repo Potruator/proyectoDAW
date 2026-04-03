@@ -12,7 +12,7 @@ class Event extends Model {
         'title',
         'description',
         'date',
-        'image_path', // ¿?¿?
+        // 'image_path', // ¿?¿?
         'location',
         'is_public',
     ];

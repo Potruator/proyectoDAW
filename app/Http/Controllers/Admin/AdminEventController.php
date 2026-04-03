@@ -56,7 +56,7 @@ class AdminEventController extends Controller
             Event::create($validated);
 
             return redirect()
-                ->route('admin.events.index')
+                ->route('events.index')
                 ->with('success', 'Evento creado correctamente');
         }
         catch(\Exception $e) {
@@ -110,18 +110,23 @@ class AdminEventController extends Controller
     public function update(Request $request, Event $event)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'date' => 'required|date|after:today',
-            'location' => 'required|string|max:255',
-            'is_public' => 'boolean'
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'date' => 'nullable|date|after:today',
+            'location' => 'nullable|string|max:255',
+            'is_public' => 'nullable|boolean'
         ]);
 
+        // Limpiamos campos vacíos para no sobrescribir nada con nulos
+        $dataToUpdate = array_filter($validated, function ($value) {
+            return $value !== null && $value !== '';
+        });
+
         try {
-            $event->update($validated);
+            $event->update($dataToUpdate);
 
             return redirect()
-                ->route('admin.events.index')
+                ->route('events.index')
                 ->with('success', 'Evento actualizado correctamente');
         }
         catch(\Exception $e) {
@@ -144,7 +149,7 @@ class AdminEventController extends Controller
             $event->delete();
 
             return redirect()
-                ->route('admin.events.index')
+                ->route('events.index')
                 ->with('success', 'Evento eliminado correctamente');
         }
         catch (\Exception $e) {
