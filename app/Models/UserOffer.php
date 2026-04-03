@@ -127,7 +127,7 @@ class UserOffer extends Model {
         $this->redeemed_at = now();
 
         if ($staffId) {
-            $this->redeemedBy = $staffId;
+            $this->redeemed_by = $staffId;
         }
         if ($notes) {
             $this->redemption_notes = $notes;
