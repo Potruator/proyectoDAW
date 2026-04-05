@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Offer;
+
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -64,7 +66,15 @@ class AdminUserController extends Controller
         ]);
 
         try {
-            User::create($validated);
+            // Creamos el nuevo usuario
+            $newUser = User::create($validated);
+            // Colleccionamos todas las ofertas activas
+            $activeOffers = Offer::active()->pluck('id');
+            // Se las asignamos
+            if ($activeOffers->isNotEmpty()) {
+                $newUser->offers()->attach($activeOffers);
+            }
+
             return redirect()
                 ->route('users.index')
                 ->with('success', 'Usuario creado exitosamente');
