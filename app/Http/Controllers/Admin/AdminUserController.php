@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Offer;
+use App\Models\UserOffer;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -69,10 +70,15 @@ class AdminUserController extends Controller
             // Creamos el nuevo usuario
             $newUser = User::create($validated);
             // Colleccionamos todas las ofertas activas
-            $activeOffers = Offer::active()->pluck('id');
+            $activeOffers = Offer::active()->get();
             // Se las asignamos
             if ($activeOffers->isNotEmpty()) {
-                $newUser->offers()->attach($activeOffers);
+                foreach ($activeOffers as $offer) {
+                    UserOffer::create([
+                        'user_id' => $newUser->id,
+                        'offer_id' => $offer->id
+                    ]);
+                }
             }
 
             return redirect()
