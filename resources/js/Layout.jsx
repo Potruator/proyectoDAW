@@ -66,7 +66,7 @@ export default function Layout({ children }) {
                             <div className='flex md:hidden'>
                                 <button 
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className='text-gray-400 hover:text-amber-400 focus:outline-none p-2'
+                                    className='text-gray-400 hover:cursor-pointer hover:text-amber-400  focus:outline-none p-2'
                                 >
                                     <svg className='h-7 w-7' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                         {isOpen ? (
@@ -81,25 +81,28 @@ export default function Layout({ children }) {
                     </div>
                     <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-gray-900 border-t border-gray-100`}>
                         <div className='px-2 pt-2 pb-3 space-y-1'>
-                            <Link href='/' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>Inicio</Link>
-                            <Link href='/about' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>About</Link>
-                            <Link href='/contact' className='block px-3 py-3 text-gray-50 active:bg-amber-400 active:text-gray-900 rounded-md'>Contacto</Link>
+                            <Link href='/' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Inicio</Link>
+                            <Link href='/about' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>About</Link>
+                            <Link href='/contact' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Contacto</Link>
 
                             {/* Usuario autenticado en mobile */}
                             {auth.user ? (
                                 <>
-                                    <div className='px-3 py-3 text-amber-400 text-sm border-t border-gray-800'>
-                                        <Link href={`/app/${auth.user.role}`} method='get'>
+                                    <div className='px-3 py-3 text-amber-400 text-sm border-t border-gray-800 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>
+                                        <Link 
+                                            href={`/app/${auth.user.role}`} 
+                                            method='get'
+                                        >
                                             {auth.user.name}
                                         </Link>
                                     </div>
                                     <Link href='/logout' method='post' as='button' 
-                                        className='block w-full text-left px-3 py-3 text-red-400 hover:bg-red-400 hover:text-gray-900 rounded-md transition-colors'>
+                                        className='block w-full text-left px-3 py-3 hover:cursor-pointer active:text-red-400 active:bg-red-400 text-red-400 hover:bg-red-400 hover:text-gray-900 rounded-md transition-colors'>
                                         Salir
                                     </Link>
                                 </>
                             ) : (
-                                <Link href='/login' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 rounded-md transition-colors'>
+                                <Link href='/login' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md transition-colors'>
                                     Login
                                 </Link>
                             )}
