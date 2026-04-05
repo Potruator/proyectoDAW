@@ -1,4 +1,5 @@
-import AppLayout from '../../Layouts/AppLayout';
+import AppLayout from '@/Layouts/AppLayout';
+import { scanSuccessSound } from '@/utils/sounds';
 import { Head, router, usePage, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
@@ -79,6 +80,7 @@ export default function Scan() {
                         <Scanner
                             onScan={handleScan}
                             formats={['qr_code']}
+                            sound={scanSuccessSound}
                             components={{
                                 audio:false,
                                 tracker: true
