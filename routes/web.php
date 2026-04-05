@@ -4,16 +4,18 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\PasswordResetController;
 use App\Http\Controllers\Web\PublicController;
-use App\Http\Controllers\Web\OfferController;
 use App\Http\Controllers\Web\RedemptionController;
 use App\Http\Controllers\Web\AuthController;
 
+// ADMIN
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOfferController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminUserController;
-
+// STAFF
 use App\Http\Controllers\Staff\StaffDashboardController;
+// CLIENT
+use App\Http\Controllers\Client\ClientDashboardController;
 
 
 // Rutas públicas
@@ -59,8 +61,11 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::middleware(['auth'])->prefix('app')->group(function() {
 
     // Cliente
-    Route::middleware(['role:client'])->group(function() {
-        Route::get('/offers', [OfferController::class, 'index'])->name('client.offers.index');
+    Route::middleware(['role:client'])->prefix('client')->group(function() {
+        // Dashboard
+        Route::get('/', [ClientDashboardController::class, 'index'])->name('client.dashboard');
+        // Mostrar QR - con {userOffer:uuid} hacemos que Laravel busque en la tabla user_offers el registro que coincide con el UUID
+        Route::get('/offers/{userOffer:uuid}', [ClientDashboardController::class, 'show'])->name('client.show');
     });
 
     // Staff
