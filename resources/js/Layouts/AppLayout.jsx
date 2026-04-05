@@ -3,8 +3,50 @@ import { useState, useEffect } from 'react';
 
 export default function AppLayout({ children }) {
     const { auth } = usePage().props;
-    const [sidebarOpen, setSidebarOpen] = useState(true);
     const currentUrl = usePage().url;
+    
+    const [sidebarOpen, setSidebarOpen] = useState(() => {
+        /* Guardamos en memoria si el sidebar estaba a true o false, para evitar parpadeos
+        al refrescar la página */
+        if (typeof window !== 'undefined') {
+            const savedState = localStorage.getItem('sidebarPreference');
+            if (savedState !== null) {
+                return JSON.parse(savedState);
+            }
+            // Si es la primera vez que se accede, decidimos según el tamapo de la pantalla
+            return window.innerWidth >= 768;
+        }
+        return true;
+    });
+
+    // Actualizamos el valor cada vez que se cambie
+    useEffect(() => {
+        localStorage.setItem('sidebarPreference', JSON.stringify(sidebarOpen));
+    }, [sidebarOpen]);
+
+    // Respuesta al redimensionamiento
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setSidebarOpen(false);
+            }
+            else {
+                setSidebarOpen(true);
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    });
+
+    // Cerrar menú en móvil al cambiar de página
+    useEffect(() => {
+        if (window.innerWidth < 768) {
+            setSidebarOpen(false);
+        }
+    }, [currentUrl]);
+
+    
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -25,7 +67,7 @@ export default function AppLayout({ children }) {
     const isClient = auth.user?.role === 'client';
 
     return (
-        <div className='min-h-screen bg-gray-950 flex overflow-hidden relative'>
+        <div className='flex-1 w-full bg-gray-950 flex overflow-hidden relative'>
             
             {/* 1. OVERLAY MÓVIL */}
             {sidebarOpen && (
@@ -213,9 +255,9 @@ export default function AppLayout({ children }) {
                     </div>
                 </header>
 
-                <main className='flex-1 p-4 md:p-6 overflow-y-auto'>
+                <section className='flex-1 p-4 md:p-6 overflow-y-auto'>
                     {children}
-                </main>
+                </section>
             </div>
         </div>
     );

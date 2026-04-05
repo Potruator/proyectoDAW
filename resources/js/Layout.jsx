@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function Layout({ children }) {
-    const { auth, flash } = usePage().props;
+    const { auth = {}, flash = {} } = usePage().props;
     const [isOpen, setIsOpen] = useState(false);
     const [showFlash, setShowFlash] = useState(false);
     const [hideFlash, setHideFlash] = useState(false);
@@ -80,7 +80,7 @@ export default function Layout({ children }) {
                         </div>
                     </div>
                     <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-gray-900 border-t border-gray-100`}>
-                        <div className='px-2 pt-2 pb-3 space-y-1'>
+                        <div className='px-2 pt-2 pb-3 space-y-1' onClick={() => setIsOpen(false)}>
                             <Link href='/' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Inicio</Link>
                             <Link href='/about' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>About</Link>
                             <Link href='/contact' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Contacto</Link>
@@ -189,7 +189,7 @@ export default function Layout({ children }) {
                 </div>
             )}
 
-            <main className='grow'>{children}</main>
+            <main className='grow flex flex-col'>{children}</main>
 
             <footer className='bg-gray-900 border-t border-gray-800 mt-auto'>
                 <div className='mx-auto py-4 text-center text-gray-400'>
