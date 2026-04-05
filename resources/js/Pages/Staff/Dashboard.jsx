@@ -49,17 +49,36 @@ export default function Dashboard({ stats, recentScans = [] }) {
                 <div className='bg-gray-90 border border-gray-800 rounded-2xl overflow-hidden mt-8'>
                     <div className='p-6 border-b border-gray-800'>
                         <h3 className='text-lg font-bold text-white'>Últimos movimientos</h3>
+                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Tu historial</span>
                     </div>
 
                     <div className='p-6 text-center'>
                         {recentScans.length === 0 
                             ? (
-                                <p className='text-gray-500'>Aún no has canjeado ninguna oferta hoy</p>
+                                <div className="py-4 flex flex-col items-center justify-center opacity-50">
+                                    <svg className="w-12 h-12 text-gray-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                    </svg>
+                                    <p className='text-gray-500'>Aún no has canjeado ninguna oferta hoy</p>
+                                </div>
                             ) 
                             : (
                                 <div className='space-y-3'>
-                                    {/* --------------- MAPEAR EL ARRAY DE recentScans AL CONECTAR CON EL BACKEND --------*/}
-                                    <p className='text-gray-500 italic'>Los datos se cargarán aquí pronto...</p>
+                                    {recentScans.map((scan) => (
+                                        <div key={scan.id} className="flex justify-between items-center p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 rounded-xl transition-colors">
+                                            <div className='text-left'>
+                                                <p className='text-white font-semibold'>{scan.offer_title}</p>
+                                                <p className='text-sm text-gray-400'>
+                                                    Cliente: <span className='text-gray-300'>{scan.client_name}</span>
+                                                </p>
+                                            </div>
+                                            <div className='shrink-0 text-right'>
+                                                <span className="text-xs text-amber-500 font-medium bg-amber-500/10 px-2.5 py-1 rounded-full whitespace-nowrap">
+                                                    {scan.time}
+                                                </span>                                    
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             )
                         }
