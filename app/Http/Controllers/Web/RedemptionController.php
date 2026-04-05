@@ -34,7 +34,7 @@ class RedemptionController extends Controller
         if ($userOffer->isRedeemed()) {
             $date = $userOffer->redeemed_at->format('d/m/Y \a \l\a\s H:i');
             return back()
-                ->with('error', 'Esta oferta ya fue canjeada el {$date}');
+                ->with('error', 'Esta oferta ya fue canjeada el ' . $date);
         }
 
         if (!$userOffer->isValid()) {
@@ -50,7 +50,7 @@ class RedemptionController extends Controller
         try {
             $userOffer->markAsRedeemed(auth()->id());
 
-            return back()->with('success', `Éxito. {$userOffer->user->name} ha canjeado {$userOffer->offer->title}`);
+            return back()->with('success', 'Éxito. ' . $userOffer->user->name . 'ha canjeado ' . $userOffer->offer->title);
         }
         catch (\Exception $e) {
             \Log::error('Error al canjear oferta UUID: ' . $uuid, [
