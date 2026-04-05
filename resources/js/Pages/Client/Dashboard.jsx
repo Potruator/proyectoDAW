@@ -41,7 +41,7 @@ export default function Dashboard({ offers }) {
                         </div>
                     )
                     : (
-                        <div className='text-center py-200 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200'>
+                        <div className='text-center rounded-3xl py-20 border-2 border-dashed border-gray-200'>
                             <p className="text-gray-400">No tienes ofertas disponibles en este momento</p>
                         </div>
                     )
