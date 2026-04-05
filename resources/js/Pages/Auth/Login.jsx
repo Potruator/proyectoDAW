@@ -16,9 +16,9 @@ export default function Login() {
     };
 
     return (
-        <div className="mt-20 max-w-md mx-auto">
+        <div className="w-full max-w-xl mx-auto my-auto px-4 py-8">
             <Head title="Login"/>
-            <div className="bg-gray-900 p-8 rounded-lg shadow-2xl">
+            <div className="bg-gray-900 p-8 sm:p-10 rounded-lg shadow-2xl">
                 <h1 className="text-3xl font-bold text-amber-400 mb-6">Inicia sesión</h1>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
