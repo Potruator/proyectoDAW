@@ -67,7 +67,7 @@ export default function AppLayout({ children }) {
     const isClient = auth.user?.role === 'client';
 
     return (
-        <div className='flex-1 w-full bg-gray-950 flex overflow-hidden relative'>
+        <div className='flex-1 w-full  bg-gray-950 flex overflow-hidden relative'>
             
             {/* 1. OVERLAY MÓVIL */}
             {sidebarOpen && (
@@ -87,7 +87,7 @@ export default function AppLayout({ children }) {
                 ${sidebarOpen ? 'md:w-64' : 'md:w-20'}
             `}>
                 {/* Cabecera Sidebar */}
-                <div className={`p-4 border-b border-gray-800 flex items-center h-18 ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
+                <div className={`h-16 p-4 border-b border-gray-800 flex items-center ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
                     {sidebarOpen && (
                         <h1 className='text-xl font-bold text-amber-400'>
                             {
@@ -100,7 +100,7 @@ export default function AppLayout({ children }) {
                     )}
                     <button 
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className='text-gray-400 hover:text-white hover:cursor-pointer'
+                        className='text-gray-400 hover:text-white hover:cursor-pointer '
                     >
                         <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d={sidebarOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}/>
@@ -233,25 +233,23 @@ export default function AppLayout({ children }) {
             {/* 3. CONTENIDO PRINCIPAL */}
             <div className='flex-1 flex flex-col min-w-0'>
                 {/* Header Superior */}
-                <header className='bg-gray-900 border-b border-gray-800 px-4 md:px-6 py-4'>
-                    <div className='flex items-center justify-between'>
-                        <div className="flex items-center space-x-4">
-                            {/* Botón de hamburguesa visible SOLO en móviles */}
-                            <button 
-                                onClick={() => setSidebarOpen(true)}
-                                className='md:hidden text-gray-400 hover:text-white hover:cursor-pointer'
-                            >
-                                <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16'/>
-                                </svg>
-                            </button>
-                            <h2 className='text-xl font-bold text-white'>Dashboard</h2>
-                        </div>
-                        <div className='flex items-center space-x-4'>
-                            <span className='hidden sm:block text-gray-400 text-sm'>
-                                {new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
-                            </span>
-                        </div>
+                <header className='h-16 flex-none bg-gray-900 border-b border-gray-800 px-4 md:px-6 flex items-center justify-between'>
+                    <div className="flex items-center space-x-4">
+                        {/* Botón de hamburguesa visible SOLO en móviles */}
+                        <button 
+                            onClick={() => setSidebarOpen(true)}
+                            className='md:hidden text-gray-400 hover:text-white hover:cursor-pointer'
+                        >
+                            <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16'/>
+                            </svg>
+                        </button>
+                        <h2 className='text-xl font-bold text-white'>Dashboard</h2>
+                    </div>
+                    <div className='flex items-center space-x-4'>
+                        <span className='hidden sm:block text-gray-400 text-sm'>
+                            {new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
+                        </span>
                     </div>
                 </header>
 
