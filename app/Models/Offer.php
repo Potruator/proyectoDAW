@@ -22,8 +22,8 @@ class Offer extends Model {
     ];
 
     protected $casts = [
-        'starts_at' => 'date',
-        'expires_at' => 'date',
+        'starts_at' => 'datetime',
+        'expires_at' => 'datetime',
         'is_featured' => 'boolean',
         'is_public' => 'boolean'
     ];
@@ -32,8 +32,9 @@ class Offer extends Model {
     public function scopeActive($query) {
         return $query
             ->where('starts_at', '<=', now())
-            ->whereNull('expires_at')
-            ->orWhere('expires_at', '>=', now())
+            ->where(function ($q) {
+                $q->whereNull('expires_at')->orWhere('expires_at', '>=', now());
+            })
             ->where('is_public', true);
     }
 
@@ -41,7 +42,9 @@ class Offer extends Model {
         return $query
             ->where('is_featured', true)
             ->where('starts_at', '<=', now())
-            ->where('expires_at', '>=', now());
+            ->where(function ($q) {
+                $q->whereNull('expires_at')->orWhere('expires_at', '>=', now());
+            });
     }
 
     // Relaciones
