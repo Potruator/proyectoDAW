@@ -29,7 +29,10 @@ class User extends Authenticatable {
     ];
 
     public function offers() {
-        return $this->hasMany(UserOffer::class);
+        return $this->belongsToMany(Offer::class, 'user_offers')
+                    ->using(UserOffer::class)
+                    ->withPivot(['uuid', 'assigned_at', 'redeemed_at'])
+                    ->withTimestamps();
     }
 
     // Métodos helper para roles
