@@ -217,7 +217,7 @@ export default function AppLayout({ children }) {
                         href='/logout'
                         method='post'
                         as='button'
-                        className={`mt-3 flex items-center justify-center rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm transition-colors ${
+                        className={`mt-3 flex items-center cursor-pointer justify-center rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm transition-colors ${
                             sidebarOpen ? 'w-full space-x-2 px-4 py-2' : 'w-10 h-10 p-0'
                         }`}
                         title="Salir"
