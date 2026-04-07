@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
 
-export default function Layout({ children }) {
+export default function MainLayout({ children }) {
     const { auth = {}, flash = {} } = usePage().props;
     const [isOpen, setIsOpen] = useState(false);
     const [showFlash, setShowFlash] = useState(false);
@@ -44,8 +44,8 @@ export default function Layout({ children }) {
                             {/* Nav desktop */}
                             <div className='hidden md:flex space-x-8'>
                                 <Link href='/' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Inicio</Link>
-                                <Link href='/about' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>About</Link>
-                                <Link href='/contact' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Contact</Link>
+                                <Link href='/offers' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Ofertas</Link>
+                                <Link href='/events' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Eventos</Link>
 
                                 {/* Usuario autenticado en desktop*/}
                                 {auth.user ? (
@@ -58,7 +58,7 @@ export default function Layout({ children }) {
                                         <Link href='/logout' method='post' as='button' className='text-red-400 cursor-pointer hover:text-red-500 transition-colors font-medium'>Cerrar sesión</Link>
                                     </div>
                                 ) : (
-                                    <Link href='/login' className='text-gray-300 hover:text_amber-400 transition-colors font-medium'>Login</Link>
+                                    <Link href='/login' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Login</Link>
                                 )}
                             </div>
 
@@ -82,8 +82,8 @@ export default function Layout({ children }) {
                     <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-gray-900 border-t border-gray-100`}>
                         <div className='px-2 pt-2 pb-3 space-y-1' onClick={() => setIsOpen(false)}>
                             <Link href='/' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Inicio</Link>
-                            <Link href='/about' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>About</Link>
-                            <Link href='/contact' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Contacto</Link>
+                            <Link href='/offers' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Ofertas</Link>
+                            <Link href='/events' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md'>Eventos</Link>
 
                             {/* Usuario autenticado en mobile */}
                             {auth.user ? (
