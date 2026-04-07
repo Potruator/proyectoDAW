@@ -31,7 +31,7 @@ class PublicController extends Controller
     public function events(): Response {
         return Inertia::render('Public/Events', [
             'events' => Event::upcoming()
-                //->public()
+                ->public()
                 ->get(),
         ]);
     }
