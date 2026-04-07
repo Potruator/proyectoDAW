@@ -16,7 +16,7 @@ export default function Dashboard({ offers }) {
                                 <Link
                                     key={item.uuid}
                                     href={`/app/client/offers/${item.uuid}`}
-                                    className='group block bg-gray-900 border-gray-800 rounded-2xl p-5 shadow-sm border hover:shadow-md active:border-amber-200 hover:border-amber-200 active:scale-[0.98] transition-all'
+                                    className='group block bg-gray-900 border-gray-800 rounded-2xl p-5 shadow-sm border hover:shadow-md active:border-amber-200 hover:border-amber-200 transition-all'
                                 >
                                     <div className='flex justify-between items-start'>
                                         <div className='flex-1'>
