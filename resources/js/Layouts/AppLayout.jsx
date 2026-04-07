@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 export default function AppLayout({ children }) {
     const { auth } = usePage().props;
     const currentUrl = usePage().url;
+
+    // Obtenemos el rol del usuario para construir la ruta de Scan
+    const userRole = auth.user.role;
     
     const [sidebarOpen, setSidebarOpen] = useState(() => {
         /* Guardamos en memoria si el sidebar estaba a true o false, para evitar parpadeos
@@ -180,11 +183,11 @@ export default function AppLayout({ children }) {
                         </>
                     )}
                     
-                    {/* --- ENLACES DE STAFF --- */}
-                    {isStaff && (
+                    {/* --- ESCÁNER PARA ADMIN Y STAFF --- */}
+                    {(isAdmin || isStaff) && (
                         <>
                             <Link 
-                                href='/app/staff/scan'
+                                href={`/app/${userRole}/scan`}
                                 className={`flex items-center rounded-lg transition-colors 
                                 ${sidebarOpen 
                                     ? 'px-4 py-3 space-x-3' 

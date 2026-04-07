@@ -13,7 +13,7 @@ class RedemptionController extends Controller
      * Muestra la pantalla del escáner de cámara
      */
     public function scan() {
-        return Inertia::render('Staff/Scan');
+        return Inertia::render('Shared/Scan');
     }
 
     /**

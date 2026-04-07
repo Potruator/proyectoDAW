@@ -6,7 +6,11 @@ import { Scanner } from '@yudiel/react-qr-scanner';
 
 export default function Scan() {
     // Recuperamos los mensajes flash del controlador
-    const { flash } = usePage().props;
+    const { flash, auth } = usePage().props;
+
+    // Detectamos el rol para construir la ruta
+    const userRole = auth.user.role;
+    const baseUrl = `/app/${userRole}`;
 
     // Estados para evitar comportamiento incontrolado del escáner
     const [processing, setProcessing] = useState(false);
@@ -27,7 +31,7 @@ export default function Scan() {
         setLastScanned(value);
 
         // 5. Enviamos el UUID al backend
-        router.post(`/app/staff/scan/${value}`, {}, {
+        router.post(`${baseUrl}/scan/${value}`, {}, {
             preserveState: true,
             preserveScroll: true,
             onFinish: () => {
@@ -52,7 +56,7 @@ export default function Scan() {
                         </p>
                     </div>
                     <Link
-                        href='/app/staff'
+                        href={baseUrl}
                         className='p-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-gray-300 transition-colors'
                         title='Volver al inicio'
                     >

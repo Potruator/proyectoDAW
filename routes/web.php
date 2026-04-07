@@ -18,13 +18,13 @@ use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\Client\ClientDashboardController;
 
 
-// Rutas públicas
+// RUTAS PÚBLICAS -------------------------------------------------------
 Route::get('/', PublicController::class)->name('home');
 Route::get('/eventos', [PublicController::class, 'events'])->name('events.public');
 Route::get('/offers', [PublicController::class, 'offers'])->name('offers.public');
 
 /**
- * AUTENTICACIÓN
+ * AUTENTICACIÓN --------------------------------------------------------
  */
 Route::middleware(['guest'])->group(function () {
     // Formulario login
@@ -48,14 +48,14 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
 });
 
-// LOGOUT
+// LOGOUT ---------------------------------------------------------------
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware(['auth'])
     ->name('logout');
 
 
 /**
- * RUTAS PROTEGIDAS
+ * RUTAS PROTEGIDAS -----------------------------------------------------
  */
 
 Route::middleware(['auth'])->prefix('app')->group(function() {
@@ -80,16 +80,18 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
 
     // Admin
     Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+        // Dashboard
         Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
 
-        // CRUD de Ofertas
+        // CRUDs
         Route::resource('offers', AdminOfferController::class);
-
-        // CRUD de Usuarios
         Route::resource('users', AdminUserController::class);
-
-        // CRUD de Eventos
         Route::resource('events', AdminEventController::class);
+
+        // Escanear
+        Route::get('/scan', [RedemptionController::class, 'scan'])->name('admin.scan');
+        // Envío del código QR
+        Route::post('/scan/{uuid}', [RedemptionController::class, 'redeem'])->name('admin.redeem');
     });
 });
 
