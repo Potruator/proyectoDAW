@@ -20,7 +20,7 @@ use App\Http\Controllers\Client\ClientDashboardController;
 
 // RUTAS PÚBLICAS -------------------------------------------------------
 Route::get('/', PublicController::class)->name('home');
-Route::get('/eventos', [PublicController::class, 'events'])->name('events.public');
+Route::get('/events', [PublicController::class, 'events'])->name('events.public');
 Route::get('/offers', [PublicController::class, 'offers'])->name('offers.public');
 
 /**
