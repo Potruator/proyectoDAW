@@ -35,7 +35,7 @@ export default function Show({ userOffer }) {
 
                         <Link
                             href='/app/client'
-                            className='px-6 py-3  bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
+                            className='px-6 py-3  bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                         >
                             Volver atrás
                         </Link>

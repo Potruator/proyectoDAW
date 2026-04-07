@@ -110,13 +110,13 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                 <button
                     type='submit'
                     disabled={processing}
-                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 hover:cursor-pointer font-semibold rounded-lg transition-colors disabled:opacity-50'
+                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 hover:cursor-pointer font-semibold rounded-lg transition-colors disabled:opacity-50'
                 >
                     {processing ? 'Guardando...' : submitText}
                 </button>
                 <Link
                     href='/app/admin/users'
-                    className='px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors'
+                    className='px-6 py-3 bg-gray-700 hover:bg-gray-600 active:bg-gray-600 text-white font-semibold rounded-lg transition-colors'
                 >
                     Cancelar
                 </Link>

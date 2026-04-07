@@ -43,7 +43,7 @@ export default function Index({ events, filters }) {
                 <h1 className='text-3xl font-bold text-white'>Gestión de Eventos</h1>
                 <Link 
                     href='/app/admin/events/create'
-                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
+                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                 >
                     + Nuevo Evento
                 </Link>
@@ -59,7 +59,7 @@ export default function Index({ events, filters }) {
                             value={searchValues.search}
                             onChange={handleChange}
                             placeholder='Buscar por título o ubicación...'
-                            className='w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
+                            className='w-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 active:bg-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
                         />
                     </div>
 
@@ -68,7 +68,7 @@ export default function Index({ events, filters }) {
                             name='status'
                             value={searchValues.status}
                             onChange={handleChange}
-                            className='w-full h-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 hover:cursor-pointer rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
+                            className='w-full h-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 active:bg-gray-600 hover:cursor-pointer rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'
                         >
                             <option value=''>Todos los estados</option>
                             <option value='public'>Públicos</option>
@@ -79,7 +79,7 @@ export default function Index({ events, filters }) {
                     <div className='flex gap-2 w-full md:w-auto'>
                         <button
                             type='submit'
-                            className='flex-1 md:flex-none px-6 py-2 bg-blue-500 hover:bg-blue-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'
+                            className='flex-1 md:flex-none px-6 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'
                         >
                             Filtrar
                         </button>
@@ -87,7 +87,7 @@ export default function Index({ events, filters }) {
                             <button
                                 type='button'
                                 onClick={handleReset}
-                                className='flex-1 md:flex-none px-4 py-2 bg-gray-700 hover:bg-gray-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'
+                                className='flex-1 md:flex-none px-4 py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'
                             >
                                 Limpiar
                             </button>
@@ -127,7 +127,7 @@ export default function Index({ events, filters }) {
                             </tr>
                         ) : (
                             events.data.map((event) => (
-                                <tr key={event.id} className='hover:bg-gray-800 transition-colors'>
+                                <tr key={event.id} className='hover:bg-gray-800 active:bg-gray-800 transition-colors'>
                                     <td className={`${styles.td} font-medium text-white`}>
                                         {event.title}
                                     </td>
@@ -148,19 +148,19 @@ export default function Index({ events, filters }) {
                                         <div className='flex w-full gap-2'>
                                             <Link  
                                                 href={`/app/admin/events/${event.id}`}
-                                                className='flex-1 text-center px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded transition-colors'
+                                                className='flex-1 text-center px-3 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-white text-sm rounded transition-colors'
                                             >
                                                 Ver
                                             </Link>
                                             <Link  
                                                 href={`/app/admin/events/${event.id}/edit`}
-                                                className='flex-1 text-center px-3 py-2 bg-amber-500 hover:bg-amber-600 text-gray-900 text-sm rounded transition-colors'
+                                                className='flex-1 text-center px-3 py-2 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 text-sm rounded transition-colors'
                                             >
                                                 Editar
                                             </Link>
                                             <button
                                                 onClick={() => handleDelete(event.id)}
-                                                className='flex-1 text-center px-3 py-2 bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white text-sm rounded transition-colors'
+                                                className='flex-1 text-center px-3 py-2 bg-red-500 hover:bg-red-600 active:bg-red-600 hover:cursor-pointer text-white text-sm rounded transition-colors'
                                             >
                                                 Eliminar
                                             </button>

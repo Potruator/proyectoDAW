@@ -10,7 +10,7 @@ export default function Show({ offer }) {
                     <h1 className='text-3xl font-bold text-white'>Detalle de Oferta</h1>
                     <Link
                         href={`/app/admin/offers/${offer.id}/edit`}
-                        className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
+                        className='px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                     >
                         Editar Oferta
                     </Link>

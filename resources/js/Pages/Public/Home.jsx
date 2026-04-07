@@ -21,14 +21,14 @@ export default function Home({ featuredOffers, upcomingEvents }) {
                     <div className='flex flex-col sm:flex-row gap-4'>
                         <Link
                             href='/offers'
-                            className='px-8 py-3 bg-amber-400 text-gray-950 font-bold rounded-lg hover:bg-amber-300 transition-colors shadow-[0_0_15px_rgba(251,191,36,0.3)]'
+                            className='px-8 py-3 bg-amber-400 text-gray-950 font-bold rounded-lg hover:bg-amber-300 active:bg-amber-300 transition-colors shadow-[0_0_15px_rgba(251,191,36,0.3)]'
                         >
                             Ver Promociones
                         </Link>
                         {userRole && (
                             <Link
                                 href={`/app/${userRole}/`}
-                                className='px-8 py-3 bg-gray-800 text-gray-100 font-bold rounded-lg border border-gray-700 hover:bg-gray-700 transition-colors'
+                                className='px-8 py-3 bg-gray-800 text-gray-100 font-bold rounded-lg border border-gray-700 hover:bg-gray-700 active:bg-amber-700 transition-colors'
                             >
                                 Acceder a mi panel
                             </Link>
@@ -46,7 +46,7 @@ export default function Home({ featuredOffers, upcomingEvents }) {
                     </div>
                     <Link 
                         href='/offers'
-                        className='hidden sm:block text-amber-400 hover:text-amber-300 font-medium'
+                        className='hidden sm:block text-amber-400 hover:text-amber-300 active:text-amber-300 font-medium'
                     >
                         Ver todas &rarr;
                     </Link>
@@ -56,7 +56,7 @@ export default function Home({ featuredOffers, upcomingEvents }) {
                     {featuredOffers && featuredOffers.length > 0
                         ? (
                             featuredOffers.map(offer => (
-                                <div key={offer.id} className='bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:border-amber-400/50 transition-colors flex flex-col'>
+                                <div key={offer.id} className='bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg hover:border-amber-400/50 active:border-amber-400/50 transition-colors flex flex-col'>
                                     <h3 className='text-xl font-bold text-gray-100 mb-2'>{offer.title}</h3>
                                     <p className='text-gray-400 mb-4 grow line-clamp-3'>{offer.description}</p>
                                     <div className='mt-auto pt-4 border-t border-gray-800'>
@@ -85,7 +85,7 @@ export default function Home({ featuredOffers, upcomingEvents }) {
                         </div>
                         <Link 
                             href='/events'
-                            className='hidden sm:block text-amber-400 hover:text-amber-300 font-medium'
+                            className='hidden sm:block text-amber-400 hover:text-amber-300 active:text-amber-300 font-medium'
                         >
                             Calendario completo &rarr;
                         </Link>
@@ -95,7 +95,7 @@ export default function Home({ featuredOffers, upcomingEvents }) {
                         {upcomingEvents && upcomingEvents.length > 0
                             ? (
                                 upcomingEvents.map(event => (
-                                    <div key={event.id} className='bg-gray-950 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition-colors'>
+                                    <div key={event.id} className='bg-gray-950 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 active:border-gray-600 transition-colors'>
                                         <div className='p-6'>
                                             <div className='text-amber-400 font-semibold text-sm mb-2 uppercase tracking-wide'>
                                                 {event.date

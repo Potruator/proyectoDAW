@@ -21,11 +21,11 @@ export default function Dashboard({ stats, recentScans = [] }) {
                     {/* Botón de Escaneo */}
                     <Link
                         href='/app/staff/scan'
-                        className='bg-amber-500 hover:bg-amber-600 transition-colors 
+                        className='bg-amber-500 hover:bg-amber-600 active:bg-amber-600 transition-colors 
                         rounded-2xl p-8 flex flex-col items-center justify-center text-gray-900
                         shadow-lg group hover:cursor-pointer min-h-50'
                     >
-                        <svg className="w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-16 h-16 mb-4 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                         </svg>
                         <h3 className='text-3xl font-bold'>Escanear QR</h3>
@@ -65,7 +65,7 @@ export default function Dashboard({ stats, recentScans = [] }) {
                             : (
                                 <div className='space-y-3'>
                                     {recentScans.map((scan) => (
-                                        <div key={scan.id} className="flex justify-between items-center p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 rounded-xl transition-colors">
+                                        <div key={scan.id} className="flex justify-between items-center p-4 bg-gray-800/50 hover:bg-gray-800 active:bg-gray-800 border border-gray-700/50 rounded-xl transition-colors">
                                             <div className='text-left'>
                                                 <p className='text-white font-semibold'>{scan.offer_title}</p>
                                                 <p className='text-sm text-gray-400'>

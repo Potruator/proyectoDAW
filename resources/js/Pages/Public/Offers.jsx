@@ -22,8 +22,8 @@ export default function Offers({ offers }) {
                     {offers && offers.length > 0 
                         ? (
                             offers.map(offer => (
-                                <div key={offer.id} className='bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl hover:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.1)] transition-all flex flex-col group'>
-                                    <h3 className='text-2xl font-bold text-gray-100 mb-3 group-hover:text-amber-400 transition-colors'>
+                                <div key={offer.id} className='bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl hover:border-amber-400/50 active:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.1)] active:shadow-[0_0_20px_rgba(251,191,36,0.1)] transition-all flex flex-col group'>
+                                    <h3 className='text-2xl font-bold text-gray-100 mb-3 group-hover:text-amber-400 group-active:text-amber-400 transition-colors'>
                                         {offer.title}
                                     </h3>
                                     <p className='text-gray-400 mb-6 grow'>

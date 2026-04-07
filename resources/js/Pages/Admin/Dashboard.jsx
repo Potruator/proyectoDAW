@@ -9,6 +9,8 @@ export default function Dashboard({
     upcomingEvents,
     redemptionsByMonth
 }) {
+
+    console.log(stats);
     return (
         <AppLayout>
             <Head title='Dashboard'/>
@@ -21,7 +23,9 @@ export default function Dashboard({
                             <p className='text-gray-400 text-sm'>Total Usuarios</p>
                             <p className='text-3xl font-bold text-white mt-2'>{stats.total_users}</p>
                             <p className='text-xs text-gray-500 mt-1'>
-                                {stats.total_clients} clientes, {stats.total_staff} staff
+                                <span className='text-blue-400'>{stats.total_clients} clientes</span>,
+                                <span className='text-green-400'> {stats.total_staff} staff</span>,  
+                                <span className='text-amber-400'> {stats.total_admin} admin</span>
                             </p>
                         </div>
                         <div className='w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center'>
@@ -96,7 +100,7 @@ export default function Dashboard({
                         {redemptionsByMonth.map((item,index) => (
                             <div key={index} className='flex-1 flex flex-col items-center'>
                                 <div
-                                    className='w-full bg-amber-500 rounded-t hover:bg-amber-400 transition-colors cursor-pointer'
+                                    className='w-full bg-amber-500 rounded-t hover:bg-amber-400 active:bg-amber-400 transition-colors cursor-pointer'
                                     style={{ height: `${(item.count / Math.max(...redemptionsByMonth.map(i => i.count))) * 100}%`}}
                                     title={`${item.count} canjeos`}
                                 />

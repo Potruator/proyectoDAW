@@ -43,9 +43,9 @@ export default function MainLayout({ children }) {
 
                             {/* Nav desktop */}
                             <div className='hidden md:flex space-x-8'>
-                                <Link href='/' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Inicio</Link>
-                                <Link href='/offers' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Ofertas</Link>
-                                <Link href='/events' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Eventos</Link>
+                                <Link href='/' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Inicio</Link>
+                                <Link href='/offers' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Ofertas</Link>
+                                <Link href='/events' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Eventos</Link>
 
                                 {/* Usuario autenticado en desktop*/}
                                 {auth.user ? (
@@ -55,10 +55,10 @@ export default function MainLayout({ children }) {
                                                 Hola, {auth.user.name}
                                             </Link>
                                         </span>
-                                        <Link href='/logout' method='post' as='button' className='text-red-400 cursor-pointer hover:text-red-500 transition-colors font-medium'>Cerrar sesión</Link>
+                                        <Link href='/logout' method='post' as='button' className='text-red-400 cursor-pointer hover:text-red-500 active:text-red-500 transition-colors font-medium'>Cerrar sesión</Link>
                                     </div>
                                 ) : (
-                                    <Link href='/login' className='text-gray-300 hover:text-amber-400 transition-colors font-medium'>Login</Link>
+                                    <Link href='/login' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Login</Link>
                                 )}
                             </div>
 
@@ -66,7 +66,7 @@ export default function MainLayout({ children }) {
                             <div className='flex md:hidden'>
                                 <button 
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className='text-gray-400 hover:cursor-pointer hover:text-amber-400  focus:outline-none p-2'
+                                    className='text-gray-400 hover:cursor-pointer hover:text-amber-400 active:text-amber-400 focus:outline-none p-2'
                                 >
                                     <svg className='h-7 w-7' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                         {isOpen ? (
@@ -97,7 +97,7 @@ export default function MainLayout({ children }) {
                                         </Link>
                                     </div>
                                     <Link href='/logout' method='post' as='button' 
-                                        className='block w-full text-left px-3 py-3 hover:cursor-pointer active:text-red-400 active:bg-red-400 text-red-400 hover:bg-red-400 hover:text-gray-900 rounded-md transition-colors'>
+                                        className='block w-full text-left px-3 py-3 hover:cursor-pointer text-red-400 hover:bg-red-400 hover:text-gray-900 active:bg-red-400 active:text-gray-900 rounded-md transition-colors'>
                                         Salir
                                     </Link>
                                 </>
@@ -142,7 +142,7 @@ export default function MainLayout({ children }) {
                                     setHideFlash(true);
                                     setTimeout(() => setShowFlash(false), 300); // Tiempo para permitir la animación
                                 }}
-                                className='ml-4 cursor-pointer text-white hover:text-gray-200 shrink-0'>
+                                className='ml-4 cursor-pointer text-white hover:text-gray-200 active:text-gray-200 shrink-0'>
                                     <svg className='w-5 h-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2}
                                             d='M6 18L18 6M6 6l12 12'/>
@@ -178,7 +178,7 @@ export default function MainLayout({ children }) {
                                     setHideFlash(true);
                                     setTimeout(() => setShowFlash(false), 320); // Tiempo para permitir la animación
                                 }}
-                                className='ml-4 cursor-pointer text-white hover:text-gray-200 shrink-0'>
+                                className='ml-4 cursor-pointer text-white hover:text-gray-200 active:text-gray-200 shrink-0'>
                                     <svg className='w-5 h-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2}
                                             d='M6 18L18 6M6 6l12 12'/>

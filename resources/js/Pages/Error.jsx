@@ -42,7 +42,7 @@ export default function Error({ status }) {
                         {/* Botón 1: Volver a la página anterior usando el historial del navegador */}
                         <button
                             onClick={() => window.history.back()}
-                            className='w-full sm:w-auto px-6 py-3 bg-gray-800 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors border border-gray-700 flex items-center justify-center cursor-pointer'
+                            className='w-full sm:w-auto px-6 py-3 bg-gray-800 hover:bg-gray-800 active:bg-gray-800 text-white rounded-lg font-medium transition-colors border border-gray-700 flex items-center justify-center cursor-pointer'
                         >
                             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -53,7 +53,7 @@ export default function Error({ status }) {
                         {/* Botón 2: Ir directo al inicio (Por si abrieron la URL directamente) */}
                         <Link
                             href='/'
-                            className='w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 rounded-lg font-bold transition-colors cursor-pointer'
+                            className='w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 rounded-lg font-bold transition-colors cursor-pointer'
                         >
                             Ir a la página principal
                         </Link>

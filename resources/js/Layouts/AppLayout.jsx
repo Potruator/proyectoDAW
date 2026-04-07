@@ -103,7 +103,7 @@ export default function AppLayout({ children }) {
                     )}
                     <button 
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className='text-gray-400 hover:text-white hover:cursor-pointer '
+                        className='text-gray-400 hover:text-white hover:cursor-pointer active:text-white'
                     >
                         <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d={sidebarOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}/>
@@ -124,7 +124,7 @@ export default function AppLayout({ children }) {
                                 } ${
                                     currentUrl === '/app/admin' 
                                         ? 'bg-amber-500 text-gray-900'
-                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
                                 }`}
                             >
                                 <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -140,7 +140,7 @@ export default function AppLayout({ children }) {
                                 } ${
                                     currentUrl.startsWith('/app/admin/offers')
                                         ? 'bg-amber-500 text-gray-900'
-                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
                                 }`}
                             >
                                 <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -156,7 +156,7 @@ export default function AppLayout({ children }) {
                                 } ${
                                     currentUrl.startsWith('/app/admin/events')
                                         ? 'bg-amber-500 text-gray-900'
-                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
                                 }`}
                             >
                                 <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -172,7 +172,7 @@ export default function AppLayout({ children }) {
                                 } ${
                                     currentUrl.startsWith('/app/admin/users')
                                         ? 'bg-amber-500 text-gray-900'
-                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
                                 }`}
                             >
                                 <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -194,7 +194,7 @@ export default function AppLayout({ children }) {
                                     : 'justify-center p-3'} 
                                 ${currentUrl.startsWith('/app/staff/scan') 
                                     ? 'bg-amber-500 text-gray-900' 
-                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'}`}
+                                    : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'}`}
                             >
                                 <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z' /></svg>
                             {sidebarOpen && <span>Escanear Oferta</span>}
@@ -220,7 +220,7 @@ export default function AppLayout({ children }) {
                         href='/logout'
                         method='post'
                         as='button'
-                        className={`mt-3 flex items-center cursor-pointer justify-center rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm transition-colors ${
+                        className={`mt-3 flex items-center cursor-pointer justify-center rounded-lg bg-red-500 hover:bg-red-600 active:bg-red-600 text-white text-sm transition-colors ${
                             sidebarOpen ? 'w-full space-x-2 px-4 py-2' : 'w-10 h-10 p-0'
                         }`}
                         title="Salir"
@@ -241,7 +241,7 @@ export default function AppLayout({ children }) {
                         {/* Botón de hamburguesa visible SOLO en móviles */}
                         <button 
                             onClick={() => setSidebarOpen(true)}
-                            className='md:hidden text-gray-400 hover:text-white hover:cursor-pointer'
+                            className='md:hidden text-gray-400 hover:text-white hover:cursor-pointer active:text-white'
                         >
                             <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16'/>

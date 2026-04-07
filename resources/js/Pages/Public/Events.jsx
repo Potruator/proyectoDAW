@@ -22,7 +22,7 @@ export default function Events({ events }) {
                     {events && events.length > 0 
                         ? (
                             events.map(event => (
-                                <div key={event.id} className='bg-gray-900 flex flex-col sm:flex-row border border-gray-800 rounded-2xl overflow-hidden shadow-xl hover:border-gray-600 transition-all group'>
+                                <div key={event.id} className='bg-gray-900 flex flex-col sm:flex-row border border-gray-800 rounded-2xl overflow-hidden shadow-xl hover:border-gray-600 active:border-gray-600 transition-all group'>
 
                                     {/* Bloque de Fecha Destacada */}
                                     <div className='bg-gray-950 sm:w-1/3 p-6 flex flex-col items-center justify-centerborder-b sm:border-b-0 sm:border-r border-gray-800 text-center'>
@@ -47,7 +47,7 @@ export default function Events({ events }) {
 
                                     {/* Detalles del Evento */}
                                     <div className='p-6 sm:w-2/3 flex flex-col justify-center'>
-                                        <h3 className='text-2xl font-bold text-gray-100 mb-3 group-hover:text-amber-400 transition-colors'>
+                                        <h3 className='text-2xl font-bold text-gray-100 mb-3 group-hover:text-amber-400 group-active:text-amber-400 transition-colors'>
                                             {event.title}
                                         </h3>
                                         <p className='text-gray-400 text-base'>

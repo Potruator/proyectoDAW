@@ -15,7 +15,7 @@ export default function Index({ offers }) {
                 <h1 className='text-3xl font-bold text-white'>Gestión de Ofertas</h1>
                 <Link 
                     href='/app/admin/offers/create'
-                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
+                    className='px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
                 >
                     + Nueva Oferta
                 </Link>
@@ -48,7 +48,7 @@ export default function Index({ offers }) {
                     </thead>
                     <tbody className='divide-y divide-gray-800'>
                         {offers.data.map((offer) => (
-                            <tr key={offer.id} className='hover:bg-gray-800 transition-colors'>
+                            <tr key={offer.id} className='hover:bg-gray-800 active:bg-gray-800 transition-colors'>
                                 <td className='px-6 py-4'>
                                     <div>
                                         <p className='text-white font-medium'>{offer.title}</p>
@@ -93,19 +93,19 @@ export default function Index({ offers }) {
                                     <div className='flex w-full gap-2'>
                                         <Link  
                                             href={`/app/admin/offers/${offer.id}`}
-                                            className='flex-1 text-center px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded transition-colors'
+                                            className='flex-1 text-center px-3 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-white text-sm rounded transition-colors'
                                         >
                                             Ver
                                         </Link>
                                         <Link  
                                             href={`/app/admin/offers/${offer.id}/edit`}
-                                            className='flex-1 text-center px-3 py-2 bg-amber-500 hover:bg-amber-600 text-gray-900 text-sm rounded transition-colors'
+                                            className='flex-1 text-center px-3 py-2 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 text-sm rounded transition-colors'
                                         >
                                             Editar
                                         </Link>
                                         <button
                                             onClick={() => handleDelete(offer.id)}
-                                            className='flex-1 text-center px-3 py-2 bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white text-sm rounded transition-colors'
+                                            className='flex-1 text-center px-3 py-2 bg-red-500 hover:bg-red-600 active:bg-red-600 hover:cursor-pointer text-white text-sm rounded transition-colors'
                                         >
                                             Eliminar
                                         </button>
@@ -132,7 +132,7 @@ export default function Index({ offers }) {
                                         px-3 py-2 roudned text-sm
                                         ${link.active
                                             ? 'bg-amber-500 text-gray-900 font-semibold'
-                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600 active:bg-gray-600'
                                         }
                                         ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}
                                     `}

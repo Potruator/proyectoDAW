@@ -56,7 +56,7 @@ export default function Login() {
                             <button
                                 type='button'
                                 onClick={() => setShowPassword(!showPassword)}
-                                className='absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-amber-400 hover:cursor-pointer transition-colors focus:outline-none'
+                                className='absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-amber-400 active:text-amber-400 hover:cursor-pointer transition-colors focus:outline-none'
                             >
                                 {showPassword 
                                     ?   (/* Icono de ojo abierto (Ocultar contraseña) */
@@ -79,7 +79,7 @@ export default function Login() {
                         <div className="mt-2">
                             <a 
                                 href="/forgot-password"
-                                className="text-amber-400 hover:text-amber-500 transition-colors"
+                                className="text-amber-400 hover:text-amber-500 active:text-amber-500 transition-colors"
                             >
                                 ¿Olvidaste tu contraseña?
                             </a>
@@ -91,7 +91,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={processing}
-                        className="cursor-pointer w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
+                        className="cursor-pointer w-full bg-amber-400 hover:bg-amber-500 active:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
                     >
                         {processing ? "Iniciando..." : "Iniciar sesión"}
                     </button>

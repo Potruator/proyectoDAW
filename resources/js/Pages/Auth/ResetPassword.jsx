@@ -59,7 +59,7 @@ export default function ResetPassword({ token, email }) {
                     <button
                         type='submit'
                         disabled={processing}
-                        className='w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg disabled:opacity-50 transition-colors'
+                        className='w-full bg-amber-400 hover:bg-amber-500 active:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg disabled:opacity-50 transition-colors'
                     >
                         {processing ? 'Guardando...' : 'Restablecer Contraseña'}
                     </button>

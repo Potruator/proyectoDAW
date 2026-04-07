@@ -57,7 +57,7 @@ export default function Scan() {
                     </div>
                     <Link
                         href={baseUrl}
-                        className='p-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-gray-300 transition-colors'
+                        className='p-2 bg-gray-800 hover:bg-gray-700 active:bg-gray-700 rounded-lg text-gray-300 transition-colors'
                         title='Volver al inicio'
                     >
                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

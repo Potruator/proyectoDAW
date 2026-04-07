@@ -45,7 +45,7 @@ export default function ForgotPassword() {
                     <button
                         type='submit'
                         disabled={processing}
-                        className='w-full bg-amber-400 hover:bg-amber-500 hover:cursor-pointer text-gray-900 font-bold py-3 px-4 rounded-lg disabled:opacity-50 transition-colors'
+                        className='w-full bg-amber-400 hover:bg-amber-500 active:bg-amber-500 hover:cursor-pointer text-gray-900 font-bold py-3 px-4 rounded-lg disabled:opacity-50 transition-colors'
                     >
                         {processing ? 'Enviando...' : 'Enviar enlace'}
                     </button>
