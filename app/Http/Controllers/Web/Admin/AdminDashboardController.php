@@ -21,9 +21,10 @@ class AdminDashboardController extends Controller
     {
         // Estadísticas generales
         $stats = [
-            'totalUsers' => User::count(),
+            'total_users' => User::count(),
             'total_clients' => User::where('role', UserRole::CLIENT)->count(),
             'total_staff' => User::where('role', UserRole::STAFF)->count(),
+            'total_admin' => User::where('role', UserRole::ADMIN)->count(),
             'total_offers' => Offer::count(),
             'active_offers' => Offer::where('starts_at', '<=', now())
                 ->where(function ($query) {
