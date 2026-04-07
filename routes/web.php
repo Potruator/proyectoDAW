@@ -8,14 +8,14 @@ use App\Http\Controllers\Web\RedemptionController;
 use App\Http\Controllers\Web\AuthController;
 
 // ADMIN
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminOfferController;
-use App\Http\Controllers\Admin\AdminEventController;
-use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Web\Admin\AdminDashboardController;
+use App\Http\Controllers\Web\Admin\AdminOfferController;
+use App\Http\Controllers\Web\Admin\AdminEventController;
+use App\Http\Controllers\Web\Admin\AdminUserController;
 // STAFF
-use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Controllers\Web\Staff\StaffDashboardController;
 // CLIENT
-use App\Http\Controllers\Client\ClientDashboardController;
+use App\Http\Controllers\Web\Client\ClientDashboardController;
 
 
 // RUTAS PÚBLICAS -------------------------------------------------------
