@@ -32,13 +32,13 @@ class AuthController extends Controller
 
             if ($user->isStaff()) {
                 return redirect()
-                    ->intended('/')
+                    ->intended('/app/staff')
                     ->with('success', 'Bienvenido, ' . $user->name);
             }
 
             // Cliente por defecto
             return redirect()
-                ->intended('/')
+                ->intended('/app/client')
                 ->with('success', 'Bienvenido, ' . $user->name);
         }
 
