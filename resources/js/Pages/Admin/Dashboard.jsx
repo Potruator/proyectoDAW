@@ -10,7 +10,9 @@ export default function Dashboard({
     redemptionsByMonth
 }) {
 
-    console.log(stats);
+    console.log(upcomingEvents);
+    const maxRedemptions = Math.max(...redemptionsByMonth.map(i => i.count)) || 1;
+
     return (
         <AppLayout>
             <Head title='Dashboard'/>
@@ -23,8 +25,8 @@ export default function Dashboard({
                             <p className='text-gray-400 text-sm'>Total Usuarios</p>
                             <p className='text-3xl font-bold text-white mt-2'>{stats.total_users}</p>
                             <p className='text-xs text-gray-500 mt-1'>
-                                <span className='text-blue-400'>{stats.total_clients} clientes</span>,
-                                <span className='text-green-400'> {stats.total_staff} staff</span>,  
+                                <span className='text-blue-400'>{stats.total_clients} clientes</span> |
+                                <span className='text-green-400'> {stats.total_staff} staff</span> |
                                 <span className='text-amber-400'> {stats.total_admin} admin</span>
                             </p>
                         </div>
@@ -96,15 +98,20 @@ export default function Dashboard({
                 {/* Gráfico de canjeos por mes */}
                 <div className='bg-gray-900 rounded-lg p-6 border border-gray-800'>
                     <h3 className='text-lg font-semibold text-white mb-4'>Canjeos por mes</h3>
+
+                    {/* Contenedor principal de la gráfica */}
                     <div className='h-64 flex items-end justify-between space-x-2'>
                         {redemptionsByMonth.map((item,index) => (
-                            <div key={index} className='flex-1 flex flex-col items-center'>
+                            <div key={index} className='flex-1 flex flex-col h-full justify-end'>
                                 <div
-                                    className='w-full bg-amber-500 rounded-t hover:bg-amber-400 active:bg-amber-400 transition-colors cursor-pointer'
-                                    style={{ height: `${(item.count / Math.max(...redemptionsByMonth.map(i => i.count))) * 100}%`}}
+                                    className='w-full flex flex-col justify-end items-center bg-amber-500 rounded-t hover:bg-amber-400 active:bg-amber-400 transition-colors'
+                                    style={{ height: `${ (item.count / maxRedemptions) * 100 }%`}}
                                     title={`${item.count} canjeos`}
-                                />
-                                <p className='text-xs text-gray-400 mt-2'>{item.month}</p>
+                                >
+                                    <span className={item.count > 0 ? 'text-gray-900' : 'text-white'}>{item.count}</span>
+                                </div>
+                                {/* Mes bajo la barra */}
+                                <p className='text-xs text-center text-gray-400 mt-2'>{item.month}</p>
                             </div>
                         ))}
                     </div>
