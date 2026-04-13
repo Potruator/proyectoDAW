@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             OfferSeeder::class,
             EventSeeder::class,
-            UserOfferSeeder::class
+            UserOfferSeeder::class,
+            ProductSeeder::class
         ]);
 
         $this->command->info('✅ Base de datos creada correctamente');

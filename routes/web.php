@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\Admin\AdminDashboardController;
 use App\Http\Controllers\Web\Admin\AdminOfferController;
 use App\Http\Controllers\Web\Admin\AdminEventController;
 use App\Http\Controllers\Web\Admin\AdminUserController;
+use App\Http\Controllers\Web\Admin\AdminProductController;
 // STAFF
 use App\Http\Controllers\Web\Staff\StaffDashboardController;
 // CLIENT
@@ -87,6 +88,7 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
         Route::resource('offers', AdminOfferController::class);
         Route::resource('users', AdminUserController::class);
         Route::resource('events', AdminEventController::class);
+        Route::resource('products', AdminProductController::class);
 
         // Escanear
         Route::get('/scan', [RedemptionController::class, 'scan'])->name('admin.scan');

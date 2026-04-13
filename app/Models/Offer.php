@@ -51,4 +51,10 @@ class Offer extends Model {
     public function userOffers() {
         return $this->hasMany(UserOffer::class);
     }
+
+    public function products() {
+        return $this
+            ->belongsToMany(Product::class)
+            ->withTimestamps();
+    }
 }
