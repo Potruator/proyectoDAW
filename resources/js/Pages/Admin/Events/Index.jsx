@@ -1,7 +1,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, router, Head } from '@inertiajs/react';
 import { useState } from 'react';
-import styles from '../Styles modules/Index.module.css';
+import styles from '../StylesModules/Index.module.css';
 
 export default function Index({ events, filters }) {
     const [searchValues, setSearchValues] = useState({
