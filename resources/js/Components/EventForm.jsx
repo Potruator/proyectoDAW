@@ -6,7 +6,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
         description: event?.description || '',
         date: event?.date || '',
         location: event?.location || '',
-        is_public: event?.is_public || false
+        is_public: event?.is_public ?? false
     });
 
     const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
             {/* Título */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Título del Evento *
+                    Título del Evento {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <input
                     type='text'
@@ -46,7 +46,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
             {/* Ubicación */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Ubicación del Evento *
+                    Ubicación del Evento {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <input
                     type='text'
@@ -65,7 +65,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
             {/* Descripción */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Descripción *
+                    Descripción {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <textarea
                     value={data.description}
@@ -84,7 +84,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div>
                     <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                        Fecha *
+                        Fecha {!isEditing ? <span className='text-red-500'>*</span> : ''}
                     </label>
                     <input 
                         type='date'
@@ -116,7 +116,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
             </div>
 
             {/* Botones */}
-            <div className='flex gap-4 pt-4'>
+            <div className='flex gap-4 pt-4 border-t border-gray-800'>
                 <button
                     type='submit'
                     disabled={processing}
@@ -130,7 +130,7 @@ export default function EventForm({ event, submitUrl, submitText = 'Guardar', is
                 >
                     Cancelar
                 </Link>
-                <span className='ml-auto my-auto text-lg text-gray-400'>(* requerido)</span>
+                <span className='ml-auto my-auto text-lg text-gray-400'>(<span className='text-red-500'>*</span> requerido)</span>
             </div>
         </form>
     );

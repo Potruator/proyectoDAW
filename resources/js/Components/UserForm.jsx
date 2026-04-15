@@ -26,7 +26,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
             {/* Nombre */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Nombre *
+                    Nombre {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <input
                     type='text'
@@ -45,7 +45,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
             {/* Email */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Email *
+                    Email {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <input
                     type='email'
@@ -67,7 +67,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
             {/* Password */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Contraseña *
+                    Contraseña {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <input
                     type='password'
@@ -87,7 +87,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
             {/* Rol */}
             <div>
                 <label className='block text-sm font-semibold text-gray-300 mb-2'>
-                    Rol *
+                    Rol {!isEditing ? <span className='text-red-500'>*</span> : ''}
                 </label>
                 <select
                     value={data.role}
@@ -106,7 +106,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
             </div>
 
             {/* Botones */}
-            <div className='flex gap-4 pt-4'>
+            <div className='flex gap-4 pt-4 border-t border-gray-800'>
                 <button
                     type='submit'
                     disabled={processing}
