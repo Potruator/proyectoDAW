@@ -112,25 +112,45 @@ export default function Index({ products, filters }) {
                                 className={`${styles.th} text-left cursor-pointer hover:bg-gray-800 transition-colors group w-1/3`}
                                 onClick={() => handleSort('name')}
                             >
-                                Nombre del Producto <SortIcon filed='name' />
+                                Nombre del Producto 
+                                    <SortIcon 
+                                        field='name' 
+                                        currentSortField={searchValues.sortField} 
+                                        currentSortDirection={searchValues.sortDirection}
+                                    />
                             </th>
                             <th
                                 className={`${styles.th} text-left cursor-pointer hover:bg-gray-800 transition-colors group w-1/3`}
                                 onClick={() => handleSort('price')}
                             >
-                                Precio <SortIcon field='price' />
+                                Precio 
+                                    <SortIcon 
+                                        field='price' 
+                                        currentSortField={searchValues.sortField} 
+                                        currentSortDirection={searchValues.sortDirection}
+                                    />
                             </th>
                             <th
                                 className={`${styles.th} text-left cursor-pointer hover:bg-gray-800 transition-colors group w-1/3`}
                                 onClick={() => handleSort('is_active')}
                             >
-                                Estado <SortIcon field='is_active' />
+                                Estado 
+                                    <SortIcon 
+                                        field='is_active' 
+                                        currentSortField={searchValues.sortField} 
+                                        currentSortDirection={searchValues.sortDirection}
+                                    />
                             </th>
                             <th
                                 className={`${styles.th} text-left cursor-pointer hover:bg-gray-800 transition-colors group w-1/3`}
                                 onClick={() => handleSort('created_at')}
                             >
-                                Fecha de alta <SortIcon field='created_at' />
+                                Fecha de alta 
+                                    <SortIcon 
+                                        field='created_at' 
+                                        currentSortField={searchValues.sortField} 
+                                        currentSortDirection={searchValues.sortDirection}                                        
+                                    />
                             </th>
                             <th className={`${styles.th} text-center`}>
                                 Acciones

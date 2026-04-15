@@ -22,8 +22,8 @@ class Product extends Model
         'price' => 'decimal:2',
     ];
 
-    // Relación 1:N
+    // Relación N:M
     public function offers() {
-        return $this->belongToMany(Offer::class);
+        return $this->belongsToMany(Offer::class)->withTimestamps();
     }
 }
