@@ -4,7 +4,7 @@ import { Link, Head } from '@inertiajs/react';
 export default function Show({ offer }) {
     return (
         <AppLayout>
-            <Head title='Detalle de Oferta'/>
+            <Head title={`Detalle de Oferta: ${offer.title}`}/>
             <div className='max-w-4xl'>
                 <div className='flex justify-between items-center mb-6'>
                     <h1 className='text-3xl font-bold text-white'>Detalle de Oferta</h1>
@@ -59,6 +59,38 @@ export default function Show({ offer }) {
                                 🌐 Pública
                             </span>
                         )}
+                    </div>
+
+                    {/* Productos Incluidos */}
+                    <div className='pt-6 border-t border-gray-800'>
+                        <h3 className='text-sm font-semibold text-gray-400 mb-3'>Productos a los que aplica</h3>
+                        {offer.products && offer.products.length > 0
+                            ? (
+                                <div className='flex flex-wrap gap-2'>
+                                    {offer.products.map(product => (
+                                        <span key={product.id} className='px-3 py-1.5 bg-gray-800 border border-gray-700 text-gray-200 rounded-md text-sm flex items-center gap-2'>
+                                            <span className='text-amber-500'>☕</span> {product.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className='text-gray-500 text-sm italic'>
+                                    Esta oferta aplica a todo el menú general.
+                                </p>
+                            )
+                        }
+                    </div>
+
+                    {/* Estadísticas */}
+                    <div className='pt-6 border-t border-gray-800 grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                        <div className='bg-gray-800/50 p-4 rounded-lg border border-gray-700/50'>
+                            <h3 className='text-sm font-semibold text-gray-400 mb-1'>Guardada por usuarios</h3>
+                            <p className='text-3xl font-bold text-blue-400'>{offer.total_assignments}</p>
+                        </div>
+                        <div className='bg-gray-800/50 p-4 rounded-lg border border-gray-700/50'>
+                            <h3 className='text-sm font-semibold text-gray-400 mb-1'>Veces canjeada en el local</h3>
+                            <p className='text-3xl font-bold text-green-400'>{offer.total_redemptions}</p>                        
+                        </div>
                     </div>
 
                     {/* Info adicional */}

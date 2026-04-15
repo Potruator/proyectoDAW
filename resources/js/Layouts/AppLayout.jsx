@@ -150,6 +150,23 @@ export default function AppLayout({ children }) {
                             </Link>
 
                             <Link
+                                href='/app/admin/products'
+                                className={`flex items-center rounded-lg transition-colors ${
+                                    sidebarOpen ? 'px-4 py-3 space-x-3' : 'justify-center p-3'
+                                } ${
+                                    currentUrl.startsWith('/app/admin/products')
+                                        ? 'bg-amber-500 text-gray-900'
+                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
+                                }`}                                                            
+                            >
+                                <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z M3 8l9 3 9-3M12 11v9' />
+                                </svg>
+
+                                {sidebarOpen && <span>Productos</span>}
+                            </Link>
+
+                            <Link
                                 href='/app/admin/events'
                                 className={`flex items-center rounded-lg transition-colors ${
                                     sidebarOpen ? 'px-4 py-3 space-x-3' : 'justify-center p-3'
