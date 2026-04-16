@@ -8,7 +8,10 @@ export default function Show({ userOffer }) {
             <Head title={`Canjear ${userOffer.title}`} />
 
             <div className='h-full flex items-center justify-center'>
-                <div className='w-full max-w-sm sm:p-10 mx-auto rounded-3xl shadow-2xl text-center'>
+                <div className='w-full max-w-sm p-8 sm:p-10 bg-gray-900 border border-gray-800 mx-auto rounded-3xl shadow-2xl text-center relative overflow-hidden'>
+                    {/* Banda de color superior para dar aspecto de ticket/tarjeta */}
+                    <div className='absolute top-0 left-0 w-full h-2 bg-amber-500'></div>
+
                     <h2 className='text-2xl font-bold mb-2'>
                         {userOffer.title}
                     </h2>
@@ -28,14 +31,17 @@ export default function Show({ userOffer }) {
                         />
                     </div>
 
-                    <div className='space-y-4'>
-                        <p className='text-xs text-gray-400 uppercase tracking-widest font-mono'>
-                            ID: {userOffer.uuid}
+                    <div className='space-y-6'>
+                        <p className='text-xs text-gray-400 uppercase tracking-widest font-mono mb-1'>
+                            ID de Validación
+                        </p>
+                        <p className='block w-full text-sm text-gray-400 font-mono bg-gray-800 py-3 px-6 rounded-lg border border-gray-700'>
+                            {userOffer.uuid}
                         </p>
 
                         <Link
                             href='/app/client'
-                            className='px-6 py-3  bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
+                            className='block w-full px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-bold rounded-lg transition-colors'
                         >
                             Volver atrás
                         </Link>
