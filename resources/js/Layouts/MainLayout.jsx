@@ -30,7 +30,7 @@ export default function MainLayout({ children }) {
     }, [flash]);
 
     return (
-        <div className='min-h-screen bg-gray-950 flex flex-col'>
+        <div className='h-dvh bg-gray-950 flex flex-col overflow-hidden'>
             <header className='sticky top-0 z-50 shadow-2xl'>
                 <nav className='bg-gray-900 border-b border-gray-800'>
                     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -189,13 +189,17 @@ export default function MainLayout({ children }) {
                 </div>
             )}
 
-            <main className='grow flex flex-col'>{children}</main>
+            <div className='flex-1 overflow-y-auto flex flex-col'>
+                <main className='grow flex flex-col'>
+                    {children}
+                </main>
 
-            <footer className='bg-gray-900 border-t border-gray-800 mt-auto'>
-                <div className='mx-auto py-4 text-center text-gray-400'>
-                    <p>&copy; 2026 Golden Café. Todos los derechos reservados.</p>
-                </div>
-            </footer>
+                <footer className='bg-gray-900 border-t border-gray-800 shrink-0 mt-auto'>
+                    <div className='mx-auto py-4 text-center text-gray-400'>
+                        <p>&copy; 2026 Golden Café. Todos los derechos reservados.</p>
+                    </div>
+                </footer>
+            </div>
         </div>
     );
 }

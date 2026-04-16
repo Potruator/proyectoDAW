@@ -70,7 +70,7 @@ export default function AppLayout({ children }) {
     const isClient = auth.user?.role === 'client';
 
     return (
-        <div className='flex-1 w-full  bg-gray-950 flex overflow-hidden relative'>
+        <div className='h-[calc(100dvh-64px)] w-full bg-gray-950 flex overflow-hidden relative'>
             
             {/* 1. OVERLAY MÓVIL */}
             {sidebarOpen && (
@@ -251,7 +251,7 @@ export default function AppLayout({ children }) {
             </aside>
 
             {/* 3. CONTENIDO PRINCIPAL */}
-            <div className='flex-1 flex flex-col min-w-0'>
+            <div className='flex-1 flex flex-col min-w-0 min-h-0'>
                 {/* Header Superior */}
                 <header className='h-16 flex-none bg-gray-900 border-b border-gray-800 px-4 md:px-6 flex items-center justify-between'>
                     <div className="flex items-center space-x-4">
