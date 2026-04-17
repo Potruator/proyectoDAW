@@ -23,8 +23,11 @@ class UserOfferTest extends TestCase
 
         // El método isExpired() debe devolver true
         $this->assertTrue($expiredOffer->isExpired(), 'La oferta debería detectarse como caducada.');
+    }
 
-        // Entrada 2: Una oferta que caduca mañana
+    public function test_check_isNotExpired(): void
+    {
+        // Una oferta que caduca mañana
         $parentOfferActive = new Offer();
         $parentOfferActive->expires_at = Carbon::tomorrow();
 
