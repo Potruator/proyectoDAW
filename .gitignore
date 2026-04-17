@@ -25,3 +25,4 @@ Homestead.yaml
 Thumbs.db
 routes/web.php
 app.zip
+*.odt
