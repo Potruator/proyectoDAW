@@ -23,6 +23,7 @@ use App\Http\Controllers\Web\Client\ClientDashboardController;
 Route::get('/', PublicController::class)->name('home');
 Route::get('/events', [PublicController::class, 'events'])->name('events.public');
 Route::get('/offers', [PublicController::class, 'offers'])->name('offers.public');
+Route::get('/help', [PublicController::class, 'help'])->name('help');
 
 /**
  * AUTENTICACIÓN --------------------------------------------------------
@@ -77,6 +78,8 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
         Route::get('/scan', [RedemptionController::class, 'scan'])->name('staff.scan');
         // Envío del código QR
         Route::post('/scan/{uuid}', [RedemptionController::class, 'redeem'])->name('staff.redeem');
+        // Introducción manual del código
+        Route::get('/scan/manual', [RedemptionController::class, 'manual'])->name('staff.scan.manual');
     });
 
     // Admin
@@ -94,6 +97,8 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
         Route::get('/scan', [RedemptionController::class, 'scan'])->name('admin.scan');
         // Envío del código QR
         Route::post('/scan/{uuid}', [RedemptionController::class, 'redeem'])->name('admin.redeem');
+        // Introducción manual del código
+        Route::get('/scan/manual', [RedemptionController::class, 'manual'])->name('admin.scan.manual');
     });
 });
 

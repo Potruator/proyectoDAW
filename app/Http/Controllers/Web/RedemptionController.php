@@ -7,6 +7,7 @@ use App\Models\UserOffer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+
 class RedemptionController extends Controller
 {
     /**
@@ -59,5 +60,12 @@ class RedemptionController extends Controller
 
             return back()->with('error', 'Hubo un error interno al guardar el canjeo. Inténtelo de nuevo');
         }
+    }
+
+    /**
+     * Muestra la pantalla para introducir el código manualmente
+     */
+    public function manual() {
+        return Inertia::render('Shared/ManualScan');
     }
 }
