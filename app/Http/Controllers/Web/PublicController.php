@@ -13,7 +13,6 @@ use Inertia\Response;
 
 class PublicController extends Controller
 {
-
     // Landing page
     public function __invoke(): Response {
         return Inertia::render('Public/Home', [
@@ -37,9 +36,14 @@ class PublicController extends Controller
     }
 
     // Listado de ofertas públicas
-    public function offers (): Response {
+    public function offers(): Response {
         return Inertia::render('Public/Offers', [
             'offers' => Offer::active()->get(),
         ]);
+    }
+
+    // Página de ayuda
+    public function help(): Response {
+        return Inertia::render('Public/Help');
     }
 }
