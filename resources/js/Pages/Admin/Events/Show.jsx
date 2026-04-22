@@ -5,15 +5,24 @@ export default function Show({ event }) {
     return (
         <AppLayout>
             <Head title='Detalle de Evento'/>
-            <div className='max-w-4xl'>
-                <div className='flex justify-between items-center mb-6'>
+            <div className='max-w-4xl mx-auto'>
+                <div className='flex flex-col sm:flex-row justify-between items-start mb-6 gap-4'>
                     <h1 className='text-3xl font-bold text-white'>Detalle de Evento</h1>
-                    <Link
-                        href={`/app/admin/events/${event.id}/edit`}
-                        className='px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors'
-                    >
-                        Editar Evento
-                    </Link>
+
+                    <div className='flex flex-wrap items-center gap-4 w-full sm:w-auto'>
+                        <Link
+                            href={`/app/admin/events/${event.id}/edit`}
+                            className='flex-1 sm:flex-none text-center px-6 py-3 bg-amber-500 hover:bg-amber-600 active:bg-amber-600 text-gray-900 font-semibold rounded-lg transition-colors shadow-lg shadow-amber-500/20'
+                        >
+                            Editar Evento
+                        </Link>
+                        <Link
+                            href={`/app/admin/events`}
+                            className='flex-1 sm:flex-none text-center px-6 py-3 bg-gray-800 hover:bg-gray-700 active:bg-gray-700 text-gray-300 font-semibold rounded-lg transition-colors'                        
+                        >
+                            Volver atrás
+                        </Link>
+                    </div>
                 </div>
 
                 <div className='bg-gray-900 rounded-lg p-8 border border-gray-800 space-y-6'>
