@@ -7,7 +7,7 @@ export default function Edit({ product }) {
         <AppLayout>
             <Head title={`Editar Producto: ${product.name}`} />
 
-            <div className='max-w-4xl mx-auto'>
+            <div className='max-w-3xl mx-auto'>
                 {/* Cabecera */}
                 <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4'>
                     <h1 className='text-3xl font-bold text-white'>

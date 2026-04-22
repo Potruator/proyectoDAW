@@ -5,7 +5,7 @@ export default function Show({ product }) {
     return (
         <AppLayout>
             <Head title={`Detalle de Producto: ${product.name}`} />
-            <div className='max-w-4xl'>
+            <div className='max-w-4xl mx-auto'>
 
                 {/* Cabecera */}
                 <div className='flex justify-between items-center mb-6'>

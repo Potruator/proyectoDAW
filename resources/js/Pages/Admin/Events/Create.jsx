@@ -6,7 +6,7 @@ export default function Create() {
     return (
         <AppLayout>
             <Head title='Crear Evento'/>
-            <div className='w-full'>
+            <div className='max-w-3xl mx-auto'>
                 <h1 className='text-3xl font-bold text-white mb-6'>Crear nuevo evento</h1>
                 <div className='bg-gray-900 rounded-lg p-8 border border-gray-800'>
                     <EventForm 
