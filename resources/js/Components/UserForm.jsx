@@ -120,7 +120,7 @@ export default function UserForm({ user, submitUrl, submitText = 'Guardar', isEd
                 >
                     Cancelar
                 </Link>
-                <span className='ml-auto my-auto text-lg text-gray-400'>(* requerido)</span>
+                <span className='ml-auto my-auto text-lg text-gray-400'>(<span className='text-red-500'>*</span> requerido)</span>
             </div>
         </form>
     );
