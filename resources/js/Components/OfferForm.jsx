@@ -1,7 +1,7 @@
 import { useForm, Link } from '@inertiajs/react';
 
 export default function OfferForm({ offer, products = [], offerProductIds = [], submitUrl, submitText = 'Guardar', isEditing = false }) {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors } = useForm({
         title: offer?.title || '',
         description: offer?.description || '',
         discount_percentage: offer?.discount_percentage || '',
@@ -223,7 +223,7 @@ export default function OfferForm({ offer, products = [], offerProductIds = [], 
                 >
                     Cancelar
                 </Link>
-                <span className='ml-auto my-auto text-lg text-gray-400'>({!isEditing ? <span className='text-red-500'>*</span> : ''} requerido)</span>
+                <span className='ml-auto my-auto text-lg text-gray-400'>(<span className='text-red-500'>*</span> requerido)</span>
             </div>
         </form>
     );
