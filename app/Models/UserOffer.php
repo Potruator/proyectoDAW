@@ -9,6 +9,16 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Offer;
 
+/**
+ * Representa una oferta asignada a un cliente específico
+ * 
+ * @property int $id Identificador autoincremental.
+ * @property int $user_id ID del cliente propietario de la oferta.
+ * @property int $offer_id ID de la oferta asignada.
+ * @property string $uuid Código único para la generación y escaneo del QR.
+ * @property \Illuminate\Support\Carbon|null $redeemed_at Fecha y hora en la que fue canjeada.
+ * @property int|null $redeemed_by ID del empleado (Staff o Admin) que canjeó la oferta.
+ */
 class UserOffer extends Model {
     use HasFactory;
 
