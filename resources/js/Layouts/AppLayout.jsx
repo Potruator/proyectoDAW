@@ -218,6 +218,24 @@ export default function AppLayout({ children }) {
                             </Link>
                         </>
                     )}
+
+                    {/* Enlace común para todos los roles para cambiar información del usuario propio */}
+                    <Link
+                        href='/app/profile' 
+                        className={`flex items-center rounded-lg transition-colors ${
+                            sidebarOpen ? 'px-4 py-3 space-x-3' : 'justify-center p-3'
+                        } ${
+                            currentUrl.includes('/profile')
+                                ? 'bg-amber-500 text-gray-900'
+                                : 'text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-800 active:text-white'
+                        }`}
+                        title="Mi Perfil"
+                    >
+                        <svg className='w-6 h-6 shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        {sidebarOpen && <span>Mi Perfil</span>}
+                    </Link>
                 </nav>
 
                 {/* Perfil de usuario y Logout */}

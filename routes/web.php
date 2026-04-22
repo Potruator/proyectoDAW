@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\PasswordResetController;
 use App\Http\Controllers\Web\PublicController;
 use App\Http\Controllers\Web\RedemptionController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\ProfileController;
 
 // ADMIN
 use App\Http\Controllers\Web\Admin\AdminDashboardController;
@@ -62,6 +63,10 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 Route::middleware(['auth'])->prefix('app')->group(function() {
 
+    // Rutas de perfil compartidas (para cambiar información de usuario)
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
     // Cliente
     Route::middleware(['role:client'])->prefix('client')->group(function() {
         // Dashboard
@@ -101,44 +106,3 @@ Route::middleware(['auth'])->prefix('app')->group(function() {
         Route::get('/scan/manual', [RedemptionController::class, 'manual'])->name('admin.scan.manual');
     });
 });
-
-
-
-
-/*
-Route::middleware(['auth', 'verified'])->group(function () {
-    
-    Route::prefix('app')->group(function () {
-
-        // Cliente
-        Route::middleware('role:client')->group(function () {
-            Route::get('/ofertas', [OfferController::class, 'index'])
-            ->name('offers.index');
-
-            Route::get('/ofertas/{userOffer:uuid}', [OfferController::class, 'show'])
-            ->name('client.offers.show');
-
-            Route::get('/qr/{userOffer:uuid}', [OfferController::class, 'qr'])
-            ->name('client.offers.qr');
-        });
-
-        // Camarero
-        Route::middleware('role:staff')->group(function () {
-            Route::get('/canjear', [RedemptionController::class, 'scan'])
-            ->name('staff.scan');
-
-            Route::post('/canjear/{userOffer:uuid}', [RedemptionController::class, 'redeem'])
-            ->name('staff.redeem');
-        });
-
-        // Admin
-        Route::middleware('role:admin')->prefix('/admin')->group(function () {
-            Route::get('/', AdminDashboardController::class)
-            ->name('admin.dashboard');
-
-            Route::resource('/ofertas', AdminOfferController::class);
-            Route::resource('/eventos', AdminEventController::class);
-            Route::resource('/usuarios', AdminUserController::class);
-        });
-    });
-}); */
