@@ -28,7 +28,7 @@ class ClientDashboardController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    'id' => $item-id,
+                    'id' => $item->id,
                     'title' => $item->offer->title ?? 'Oferta Eliminada',
                     'discount' => $item->offer->discount_percentage ?? 0,
                     'redeemed_date' => Carbon::parse($item->redeemed_at)->format('d/m/Y H:i')
