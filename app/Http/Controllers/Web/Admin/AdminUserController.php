@@ -135,7 +135,7 @@ class AdminUserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'password' => 'nullable|string|min:8|nullable',
+            'password' => 'nullable|string|min:8',
             'role' => 'nullable|in:client,staff,admin'
         ]);
 
@@ -143,11 +143,6 @@ class AdminUserController extends Controller
         $dataToUpdate = array_filter($validated, function ($value) {
             return $value !== null && $value !== '';
         });
-
-        // Hasheamos la contraseña si se ha proporcionado una nueva
-        if (isset($dataToUpdate['password'])) {
-            $dataToUpdate['password'] = bcrypt($dataToUpdate['password']);
-        }
 
         try {
             $user->update($dataToUpdate);
