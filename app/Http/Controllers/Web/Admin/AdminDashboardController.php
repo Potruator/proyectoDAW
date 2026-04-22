@@ -86,7 +86,7 @@ class AdminDashboardController extends Controller
                     'id' => $event->id,
                     'title' => $event->title,
                     'date' => $event->date->format('d/m/Y'),
-                    'time' => $event->time,
+                    'time' => $event->date->format('H:i'),
                     'location' => $event->location
                 ];
             });
