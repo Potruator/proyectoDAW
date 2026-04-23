@@ -9,13 +9,12 @@ Sistema integral para la gestión de bares y fidelización de clientes. Esta pla
 - **Panel de Administración:** Control total de usuarios, productos y ofertas.
 - **Sistema de Fidelización:** Escaneo de códigos QR para canje de promociones en tiempo real.
 - **Perfil de Usuario:** Gestión de datos personales y seguridad.
-- **Ayuda Contextual:** Sistema de asistencia integrado en cada sección (F1).
 - **Diseño Responsive:** Optimizado para dispositivos móviles y escritorio.
 - **Seguridad:** Protección contra ataques XSS, CSRF y gestión de roles mediante Middleware.
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **Backend:** [Laravel 11](https://laravel.com/)
+- **Backend:** [Laravel 12](https://laravel.com/)
 - **Frontend:** [React](https://reactjs.org/) con [Inertia.js](https://inertiajs.com/)
 - **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
 - **Base de Datos:** MySQL / MariaDB
