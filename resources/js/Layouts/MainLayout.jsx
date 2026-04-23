@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function MainLayout({ children }) {
-    const { auth = {}, flash = {} } = usePage().props;
+    const { auth = {}, flash = {}, appName } = usePage().props;
     const [isOpen, setIsOpen] = useState(false);
     const [showFlash, setShowFlash] = useState(false);
     const [hideFlash, setHideFlash] = useState(false);
@@ -38,7 +38,7 @@ export default function MainLayout({ children }) {
 
                             {/* Logo */}
                             <h1 className='shrink-0'>
-                                <Link href='/' className='text-xl font-black tracking-tight text-amber-400 uppercase'>Golden Café</Link>
+                                <Link href='/' className='text-xl font-black tracking-tight text-amber-400 uppercase'>{appName}</Link>
                             </h1>
 
                             {/* Nav desktop */}
@@ -196,7 +196,7 @@ export default function MainLayout({ children }) {
 
                 <footer className='bg-gray-900 border-t border-gray-800 shrink-0 mt-auto'>
                     <div className='mx-auto py-4 text-center text-gray-400'>
-                        <p>&copy; 2026 Golden Café. Todos los derechos reservados.</p>
+                        <p>&copy; 2026 {appName}. Todos los derechos reservados.</p>
                     </div>
                 </footer>
             </div>

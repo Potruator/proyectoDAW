@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 
-export default function Home({ featuredOffers, upcomingEvents }) {
+export default function Home({ appName, featuredOffers, upcomingEvents }) {
     const { auth } = usePage().props;
     const userRole = auth?.user?.role;
 
@@ -12,7 +12,7 @@ export default function Home({ featuredOffers, upcomingEvents }) {
             <section className='relative bg-gray-900 border-b border-gray-800'>
                 <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col items-center text-center'>
                     <h1 className='text-5xl md:text-6xl font-black text-white tracking-tight mb-6 uppercase'>
-                        Bienvenido a <span className='text-amber-400'>Golden Café</span>
+                        Bienvenido a <span className='text-amber-400'>{appName}</span>
                     </h1>
                     <p className='text-xl text-gray-400 max-w-2xl mb-10'>
                         Disfruta de la mejor experiencia, eventos exclusivos y ofertas diseñadas especialmente para ti. Inicia sesión o regístrate en nuestra aplicación

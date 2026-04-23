@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>{{ config('app.name', 'Golden Café') }}</title>
+        <title inertia>{{ config('app.name') }}</title>
 
         <!-- Favicon -->
         <link rel='icon' type='image/svg+xml' href='/favicon.svg'>
