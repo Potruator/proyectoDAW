@@ -12,11 +12,28 @@ class AdminEventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $events = Event::query()
+            // Filtro de búsqueda por texto (Título o Ubicación)
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                      ->orWhere('location', 'like', "%{$search}%");
+                });
+            })
+            //Filtro por Estado (Público o Borrador)
+            ->when($request->input('status'), function ($query, $status) {
+                if ($status === 'public') {
+                    $query->where('is_public', true);
+                }
+                else if ($status === 'draft') {
+                    $query->where('is_public', false);
+                }
+            })
             ->latest()
             ->paginate(10)
+            ->withQueryString() // Mantiene filtros al paginar
             ->through(fn ($event) => [
                 'id' => $event->id,
                 'title' => $event->title,
@@ -27,7 +44,9 @@ class AdminEventController extends Controller
             ]);
 
         return Inertia::render('Admin/Events/Index', [
-            'events' => $events
+            'events' => $events,
+            // Devolvemos los filtros a React para que el input no se vacíe
+            'filters' => $request->only(['search', 'status'])
         ]);
     }
 
