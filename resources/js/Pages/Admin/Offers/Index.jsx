@@ -1,11 +1,40 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, router, Head } from '@inertiajs/react';
+import { useState } from 'react';
 
-export default function Index({ offers }) {
+export default function Index({ offers, filters }) {
+    // Estado para controlar valores de filtro
+    const [searchValues, setSearchValues] = useState({
+        search: filters?.search || '',
+        status: filters?.status || ''
+    });
+
+    // Función para borrar una oferta
     const handleDelete = (id) => {
         if (confirm('¿Estás seguro de eliminar esta oferta?')) {
             router.delete(`/app/admin/offers/${id}`);
         }
+    };
+
+    // Actualiza el estado mientras el usuario escribe o selecciona
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSearchValues(prev => ({ ...prev, [name]: value}));
+    };
+
+    // Función para enviar los filtros a Laravel
+    const handleSearch = (e) => {
+        e.preventDefault();
+        router.get('/app/admin/offers', searchValues, {
+            preserveState: true,
+            replace: true
+        });
+    };
+
+    // Función para limpiar los filtros
+    const handleReset = () => {
+        setSearchValues({ search: '', status: ''});
+        router.get('/app/admin/offers');
     };
 
     return (
@@ -19,6 +48,53 @@ export default function Index({ offers }) {
                 >
                     + Nueva Oferta
                 </Link>
+            </div>
+
+            {/* FILTROS */}
+            <div className='bg-gray-900 p-4 rounded-lg mb-6 border border-gray-800'>
+                <form onSubmit={handleSearch} className='flex flex-col md:flex-row gap-4 w-full'>
+                    <div className='flex-1 w-full h-full'>
+                        <input 
+                            type='text'
+                            name='search'
+                            value={searchValues.search}
+                            onChange={handleChange}
+                            placeholder='Buscar por título o descripción...'
+                            className='w-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 active:bg-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'                        />
+                    </div>
+
+                    <div className='w-full md:w-64'>
+                        <select
+                            name='status'
+                            value={searchValues.status}
+                            onChange={handleChange}
+                            className='w-full h-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-600 active:bg-gray-600 hover:cursor-pointer rounded-lg px-4 py-2 focus:outline-none focus:border-amber-500'                        
+                        >
+                            <option value=''>Todos los estados</option>
+                            <option value='Activa'>Activas</option>
+                            <option value='Próxima'>Próximas</option>
+                            <option value='Expirada'>Expiradas</option>
+                        </select>
+                    </div>
+
+                    <div className='flex gap-2 w-full md:w-auto'>
+                        <button 
+                            type='submit'
+                            className='flex-1 md:flex-none px-6 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'                    
+                        >
+                            Filtrar
+                        </button>        
+                        {(searchValues.search || searchValues.status) && (
+                            <button
+                                type='button'
+                                onClick={handleReset}
+                                className='flex-1 md:flex-none px-4 py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-600 hover:cursor-pointer text-white font-semibold rounded-lg transition-colors'                        
+                            >
+                                Limpiar
+                            </button>
+                        )}
+                    </div>
+                </form>
             </div>
 
             {/* Tabla de Ofertas */}

@@ -13,28 +13,51 @@ class AdminOfferController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $offers = Offer::latest()
+        $offers = Offer::query()
+            // Filtro de búsqueda por texto (Título o Descripción)
+            ->when($request->input('search'), function ($q, $search) {
+                $q->where(function ($subQuery) use ($search) {
+                    $subQuery
+                        ->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
+            })
+            ->when($request->input('status'), function($q, $status) {
+                $now = now();
+
+                if ($status === 'Activa') {
+                    $q->where('starts_at', '<=', $now)
+                      ->where(function ($sub) use ($now) {
+                            $sub->whereNull('expires_at')->orWhere('expires_at', '>=', $now);
+                        });
+                }
+                else if ($status === 'Próxima') {
+                    $q->where('starts_at', '>', $now);
+                }
+                else if ($status === 'Expirada') {
+                    $q->whereNotNull('expires_at')->where('expires_at', '<', $now);
+                }
+            })
+            ->orderBy('created_at', 'desc')
             ->paginate(10)
+            ->withQueryString() // Para que la paginación no borre los filtros
             ->through(fn ($offer) => [
                 'id' => $offer->id,
                 'title' => $offer->title,
                 'description' => $offer->description,
                 'discount_percentage' => $offer->discount_percentage,
-                'starts_at' => $offer->starts_at->format('d/m/Y'),
-                'expires_at' => $offer->expires_at?->format('d/m/Y'),
+                'starts_at' => $offer->starts_at->format('d/m/Y H:i'),
+                'expires_at' => $offer->expires_at ? $offer->expires_at->format('d/m/Y H:i') : null,
                 'is_featured' => $offer->is_featured,
                 'is_public' => $offer->is_public,
-                'status' => $offer->starts_at > now() 
-                            ? 'Próxima'
-                            : ($offer->expires_at && $offer->expires_at < now() 
-                                ? 'Expirada'
-                                : 'Activa')
+                'status' => $offer->getStatus()
             ]);
 
         return Inertia::render('Admin/Offers/Index', [
-            'offers' => $offers
+            'offers' => $offers,
+            'filters' => $request->only(['search', 'status'])
         ]);
     }
 

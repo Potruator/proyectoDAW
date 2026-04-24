@@ -73,4 +73,24 @@ class Offer extends Model {
             ->belongsToMany(Product::class)
             ->withTimestamps();
     }
+
+    /**
+     * Devuelve el estado actual de la oferta conforme a sus fechas
+     * 
+     * @return string Puede ser 'Activa, 'Próxima' o 'Expirada'
+     */
+    public function getStatus(): string
+    {
+        $now = now();
+
+        if ($this->starts_at > $now){
+            return 'Próxima';
+        }
+
+        if ($this->expires_at && $this->expires_at < $now) {
+            return 'Expirada';
+        }
+
+        return 'Activa';
+    }
 }
