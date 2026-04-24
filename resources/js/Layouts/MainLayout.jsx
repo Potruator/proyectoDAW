@@ -58,7 +58,11 @@ export default function MainLayout({ children }) {
                                         <Link href='/logout' method='post' as='button' className='text-red-400 cursor-pointer hover:text-red-500 active:text-red-500 transition-colors font-medium'>Cerrar sesión</Link>
                                     </div>
                                 ) : (
-                                    <Link href='/login' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Login</Link>
+                                    <>
+                                        <Link href='/login' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Login</Link>                                
+                                        <Link href='/register' className='text-gray-300 hover:text-amber-400 active:text-amber-400 transition-colors font-medium'>Crea tu cuenta</Link>
+
+                                    </>
                                 )}
                             </div>
 
@@ -102,9 +106,15 @@ export default function MainLayout({ children }) {
                                     </Link>
                                 </>
                             ) : (
-                                <Link href='/login' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md transition-colors'>
-                                    Login
-                                </Link>
+                                <>
+                                    <Link href='/login' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md transition-colors'>
+                                        Login
+                                    </Link>
+                                    <Link href='/register' className='block px-3 py-3 text-gray-50 hover:bg-amber-400 hover:text-gray-900 active:bg-amber-400 active:text-gray-900 rounded-md transition-colors'>
+                                        Crea tu cuenta
+                                    </Link>
+                                </>
+
                             )}
                         </div>
                     </div>

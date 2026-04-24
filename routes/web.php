@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Public
 use App\Http\Controllers\Web\PasswordResetController;
 use App\Http\Controllers\Web\PublicController;
 use App\Http\Controllers\Web\RedemptionController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\RegisterController;
 
 // ADMIN
 use App\Http\Controllers\Web\Admin\AdminDashboardController;
@@ -30,11 +32,24 @@ Route::get('/help', [PublicController::class, 'help'])->name('help');
  * AUTENTICACIÓN --------------------------------------------------------
  */
 Route::middleware(['guest'])->group(function () {
+
+    // -- LOGIN --
+
     // Formulario login
     Route::get('/login', [PublicController::class, 'login'])->name('login');
 
     // Procesado login
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
+
+    // -----------------------
+
+    // -- CREACIÓN DE USUARIO
+
+    // Formulario creación de usuario
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+
+    // Procesado creación
+    Route::post('/register', [RegisterController::class, 'store']);
 
     // -- RECUPERACIÓN DE CONTRASEÑA --
     

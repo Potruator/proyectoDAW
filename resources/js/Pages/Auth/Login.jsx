@@ -1,4 +1,4 @@
-import { useForm, Head } from "@inertiajs/react"
+import { useForm, Head, Link } from "@inertiajs/react"
 import { useState } from "react";
 
 export default function Login() {
@@ -76,15 +76,14 @@ export default function Login() {
                                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
                             )}
                         </div>
-                        <div className="mt-2">
-                            <a 
+                        <div className="flex flex-col mt-2">
+                            <Link
                                 href="/forgot-password"
                                 className="text-amber-400 hover:text-amber-500 active:text-amber-500 transition-colors"
                             >
                                 ¿Olvidaste tu contraseña?
-                            </a>
+                            </Link>
                         </div>
-     
                     </div>
 
                     {/* Submit button */}
@@ -95,6 +94,18 @@ export default function Login() {
                     >
                         {processing ? "Iniciando..." : "Iniciar sesión"}
                     </button>
+
+                    <div className="pt-6 mt-6 border-t border-gray-800 text-center">                
+                        <p className="text-gray-400">
+                            ¿Aún no tienes cuenta?{' '}
+                            <Link
+                                href='/register'
+                                className="text-amber-400 hover:text-amber-300 font-semibold transition-colors"                               
+                            >
+                                Regístrate aquí
+                            </Link>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>
