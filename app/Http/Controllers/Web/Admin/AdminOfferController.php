@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
+use App\Models\User;
+use App\Models\UserOffer;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class AdminOfferController extends Controller
@@ -92,6 +96,9 @@ class AdminOfferController extends Controller
             'product_ids.*' => 'exists:products,id' // Validar que los IDs existan
         ]);
 
+        // Iniciamos transacción por seguridad
+        DB::beginTransaction();
+
         try {
             // Extraemos product_ids antes de crear la oferta
             $offerData = collect($validated)->except('product_ids')->toArray();
@@ -103,11 +110,36 @@ class AdminOfferController extends Controller
                 $offer->products()->sync($validated['product_ids']);
             }
 
+            // Obtenemos todos los usuarios que son clientes para asignarles la nueva oferta
+            $clients = User::where('role', 'client')->get();
+
+            // Ejecutamos la asignación masiva
+            if($clients->isNotEmpty()) {
+                $assignments = $clients->map(function ($client) use($offer) {
+                    return [
+                        'user_id' => $client->id,
+                        'offer_id' => $offer->id,
+                        'uuid' => Str::uuid()->toString(),
+                        'assigned_at' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                })->toArray();
+
+                UserOffer::insert($assignments);
+            }
+
+            // Si todo ha ido bien, confirmamos los cambios
+            DB::commit();
+
             return redirect()
                 ->route('offers.index')
                 ->with('success', 'Oferta creada exitosamente');
         }
         catch(\Exception $e) {
+            // Si algo falla, deshacemos los cambios
+            DB::rollBack();
+            
             // Registramos el error para depuración
             \Log::error('Error al crear oferta', [
                 'error' => $e->getMessage(),
