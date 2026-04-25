@@ -10,7 +10,6 @@ export default function Dashboard({
     redemptionsByMonth
 }) {
 
-    console.log(upcomingEvents);
     const maxRedemptions = Math.max(...redemptionsByMonth.map(i => i.count)) || 1;
 
     return (
