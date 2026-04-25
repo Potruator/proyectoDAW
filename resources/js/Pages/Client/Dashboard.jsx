@@ -17,7 +17,7 @@ export default function Dashboard({ stats, history, offers }) {
                     </h1>
 
                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-                        <div className='bg-gray-900 border border-gray-800 rounded2-l p-6 flex items-center justify-between shadow-sm'>
+                        <div className='bg-gray-900 border border-gray-800 rounded-2xl p-6 flex items-center justify-between shadow-sm'>
                             <div>
                                 <p className='text-sm text-gray-400 font-semibold mb-1 uppercase tracking-wider'>Ofertas Disponibles</p>
                                 <p className='text-4xl font-bold text-white'>{stats.total_saved}</p>
