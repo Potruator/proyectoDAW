@@ -20,7 +20,7 @@ class ClientDashboardController extends Controller
                 ->whereNull('redeemed_at')
                 // Añadimos filtro para que solo cuente las ofertas públicas
                 ->whereHas('offer', function($query) {
-                    $query->where('is_public', true);
+                    $query->active(); // Contador de ofertas públicas y vigentes en fecha
                 })
                 ->count(),
             'total_redeemed' => UserOffer::where('user_id', $userId)->whereNotNull('redeemed_at')->count()
@@ -46,7 +46,7 @@ class ClientDashboardController extends Controller
             ->where('user_id', $userId)
             ->whereNull('redeemed_at') // Solo las no canjeadas
             ->whereHas('offer', function ($query) {
-                $query->active();
+                $query->active(); // Filtra públicas y vigentes en fecha
             })
             ->latest()
             ->get()
