@@ -15,7 +15,14 @@ class ClientDashboardController extends Controller
 
         // Estadísticas históricas
         $stats = [
-            'total_saved' => UserOffer::where('user_id', $userId)->whereNull('redeemed_at')->count(),
+            'total_saved' => UserOffer::where('user_id', $userId)
+                // Filtro para aquellas ofertas que aún no han sido canjeadas
+                ->whereNull('redeemed_at')
+                // Añadimos filtro para que solo cuente las ofertas públicas
+                ->whereHas('offer', function($query) {
+                    $query->where('is_public', true);
+                })
+                ->count(),
             'total_redeemed' => UserOffer::where('user_id', $userId)->whereNotNull('redeemed_at')->count()
         ];
 
@@ -38,6 +45,9 @@ class ClientDashboardController extends Controller
         $offers = UserOffer::with('offer')
             ->where('user_id', $userId)
             ->whereNull('redeemed_at') // Solo las no canjeadas
+            ->whereHas('offer', function ($query) {
+                $query->active();
+            })
             ->latest()
             ->get()
             ->map(function ($item) {
@@ -62,6 +72,11 @@ class ClientDashboardController extends Controller
         // Nos aseguramos e que no se roben QRs ajenos
         if ($userOffer->user_id !== auth()->id()) {
             abort(403);
+        }
+
+        // Protegemos que no puedan abrir el QR de una oferta oculta/privada
+        if (!$userOffer->offer->is_public) {
+            abort(404, 'Esta oferta no está disponible');
         }
 
         return Inertia::render('Client/Offers/Show', [
